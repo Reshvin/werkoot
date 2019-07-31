@@ -1,0 +1,6 @@
+.vscode
+*.DS_Store
+*__pycache__
+*.env
+werkoot_web/static/.webassets-cache
+werkoot_web/static/gen
