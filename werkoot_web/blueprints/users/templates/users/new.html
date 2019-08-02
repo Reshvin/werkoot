@@ -1,1 +1,35 @@
-<h1>Users#new</h1>
+{%extends "_layout.html"%}
+{%block content%}
+
+
+    {% for error in errors%}
+    <li>{{error}}</li>
+    {%endfor%}
+
+
+    <h3 class='text-center m-3'>USER SIGN UP FORM</h3>
+    <form action="{{ url_for('users.create') }}" method='POST'>
+       
+            
+            <label for='first_name'>First Name:</label>
+            <input class='form-control' type='text' name='first_name' />
+    
+      
+            <label for='last_name'>Last Name:</label>
+            <input class='form-control' type='text' name='last_name' />
+
+            <label for='email'>Email:</label>
+            <input class='form-control' type='email' name='email' />
+    
+  
+            <label for='username'>Username:</label>
+            <input class='form-control' type='text' name='username' />
+      
+ 
+            <label for='password'>Password:</label>
+            <input class='form-control' type='password' name='password' />
+
+        <button class = 'btn btn-danger d-block mx-auto' type='submit'>SUBMIT</button>   
+    </form>
+    
+{%endblock%}
