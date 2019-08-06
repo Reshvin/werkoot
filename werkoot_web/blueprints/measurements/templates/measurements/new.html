@@ -1,0 +1,71 @@
+{%extends "_layout.html"%}
+{%block content%}
+
+<div class='container-fluid'>
+    <h3 class='text-center m-3'>Get your bicep measurment</h3>
+    <p>For best results please follow our instructions:</p>
+    <ul>
+        <li>Take a credit card or another card of the same dimensions.</li>
+        <li>Slightly dampen your arm and press the card against said arm.</li>
+        <li>Choose a card that contrasts the color of your arm.</li>
+        <li>Take your photo in front of a plain colored wall, avoid any objects in the background.</li>
+        <li>Take the picture in a well lit area to reduce background shadow, or use your camera's flash.</li>
+    </ul>
+    <div class="row d-flex justify-content-center">
+        <div class="col-6 col-sm-3 col-lg-2">
+            <img class="w-100" src="http://werkoot.s3.amazonaws.com/photo_instruct_wrong1.jpg" alt="">
+        </div>
+        <div class="col-6 col-sm-3 col-lg-2">
+            <img class="w-100" src="http://werkoot.s3.amazonaws.com/photo_instruct_wrong2.jpg" alt="">
+        </div>
+        <div class="col-6 col-sm-3 col-lg-2">
+            <img class="w-100" src="http://werkoot.s3.amazonaws.com/photo_instruct_wrong3.jpg" alt="">
+        </div>
+        <div class="col-6 col-sm-3 col-lg-2">
+            <img class="w-100" src="http://werkoot.s3.amazonaws.com/photo_instruct_correct.jpg" alt="">
+        </div>
+    </div>
+
+
+    <form class="col-lg-10 mx-auto text-center border border-outline-secondary rounded p-3 my-5" action="{{ url_for('measurements.create')}}" method="POST" enctype="multipart/form-data">
+
+        <div class="row mx-auto d-flex justify-content-around">
+            <div class="col-sm-3 p-0">
+                <div class="card">
+                    <img id="fileOneImg" class='w-100' src="http://werkoot.s3.amazonaws.com/photo_example_picture1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center p-0">
+                        <p class="card-text">Bicep flexed</p>
+                        <input type="file" name="file1" id="file1" class="inputfile" onchange="fileOne(this)"/>
+                        <label for="file1" class="my-1">Choose a file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 p-0">
+                <div class="card">
+                    <img id="fileTwoImg" class='w-100' src="http://werkoot.s3.amazonaws.com/photo_example_picture2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center p-0">
+                        <p class="card-text">Bicep relaxed</p>
+                        <input type="file" name="file2" id="file2" class="inputfile" onchange="fileTwo(this)"/>
+                        <label for="file2" class="my-1">Choose a file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 p-0">
+                <div class="card">
+                    <img id="fileThreeImg" class='w-100' src="http://werkoot.s3.amazonaws.com/photo_example_picture3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center p-0">
+                        <p class="card-text">Arm straight out</p>
+                        <input type="file" name="file3" id="file3" class="inputfile" onchange="fileThree(this)"/>
+                        <label for="file3" class="my-1">Choose a file</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+            <button class="btn btn-outline-secondary mt-3" type="submit">Get my measurement</button>
+            <a class="btn btn-outline-secondary mt-3" href="">Cancel</a>
+        </div>
+    </form>
+</div>
+{%endblock%}
