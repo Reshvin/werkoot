@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template,request,redirect,url_for,flash
+from werkoot_web.util.filehelper import allowed_file
 from werkoot_web.util.measurement.arm import measure
 import numpy as np
 import cv2
@@ -17,16 +18,22 @@ def new():
 def create():
     results = []
     if 'file1' in request.files:
+        if not allowed_file(request.files['file1'].filename):
+            return "Please select a different file"
         npimg1 = np.fromfile(request.files['file1'], np.uint8)
         img1 = cv2.imdecode(npimg1, cv2.IMREAD_COLOR)
         if measure(img1):
             results.append(measure(img1))
     if 'file2' in request.files:
+        if not allowed_file(request.files['file2'].filename):
+            return "Please select a different file"
         npimg2 = np.fromfile(request.files['file2'], np.uint8)
         img2 = cv2.imdecode(npimg2, cv2.IMREAD_COLOR)
         if measure(img2):
             results.append(measure(img2))
     if 'file3' in request.files:
+        if not allowed_file(request.files['file3'].filename):
+            return "Please select a different file"
         npimg3 = np.fromfile(request.files['file3'], np.uint8)
         img3 = cv2.imdecode(npimg3, cv2.IMREAD_COLOR)
         if measure(img3):
