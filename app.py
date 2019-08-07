@@ -22,14 +22,6 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.get_by_id(user_id)
 
-@app.route('/')
-def index():
-    if current_user.is_authenticated:
-        return redirect(url_for('users.show',username = current_user.username))
-    else:
-        flash('You are not logged in','warning')
-        return redirect(url_for('sessions.new'))
-
 
 @app.before_request
 def before_request():

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template,request,redirect,url_for,flash
 from models.user import User
-from flask_login import current_user,login_user
+from flask_login import current_user,login_user,logout_user
 from werkzeug.security import generate_password_hash,check_password_hash
 
 
@@ -33,7 +33,7 @@ def create():
 
     login_user(user)
     flash('logged in','success')
-    return redirect(url_for('index'))
+    return redirect(url_for('users.show', username = username))
 
 
 @sessions_blueprint.route('/<username>', methods=["GET"])
@@ -54,3 +54,8 @@ def edit(id):
 @sessions_blueprint.route('/<id>', methods=['POST'])
 def update(id):
     pass
+
+@sessions_blueprint.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
