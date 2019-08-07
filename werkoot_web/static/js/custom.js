@@ -33,3 +33,20 @@ function fileThree(input){
         $('#fileThreeImg').attr('src', 'http://werkoot.s3.amazonaws.com/photo_example_picture3.jpg')
     }
 }
+
+function changeUnits(){
+    if ($('#changeUnit').text() === "Inches"){
+        measCM = parseFloat($('#measurement').text())
+        measIn = measCM * 0.39
+        measIn = measIn.toFixed(1)
+        $('#measurement').text(measIn)
+        $('#unit').text('in')
+        $('#changeUnit').text("Centimeters")
+    } else {
+        $('#measurement').text(measCM)
+        $('#unit').text('cm')
+        $('#changeUnit').text("Inches")
+    }
+}
+
+$(document).on('click', '#changeUnit', changeUnits)
