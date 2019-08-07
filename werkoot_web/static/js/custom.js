@@ -35,17 +35,17 @@ function fileThree(input){
 }
 
 function changeUnits(){
-    if ($('#changeUnit').text() === "Inches"){
+    if ($('#changeUnit').text() === "Convert to inches"){
         measCM = parseFloat($('#measurement').text())
         measIn = measCM * 0.39
         measIn = measIn.toFixed(1)
         $('#measurement').text(measIn)
         $('#unit').text('in')
-        $('#changeUnit').text("Centimeters")
+        $('#changeUnit').text("Convert to centimeters")
     } else {
         $('#measurement').text(measCM)
         $('#unit').text('cm')
-        $('#changeUnit').text("Inches")
+        $('#changeUnit').text("Convert to inches")
     }
 }
 

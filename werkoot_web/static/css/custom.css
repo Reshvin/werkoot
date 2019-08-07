@@ -1,11 +1,25 @@
+/* body, html {
+  height: 100vh;
+} */
+
+#page-container{
+  position: relative;
+  min-height: 100vh;
+}
+
+#page-content{
+  padding-bottom: 230px;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
 .talesCard {
     height: 250px;
 
-}
-
-.card {
-    height: 340px;
 }
 
 .dropdown:hover>.dropdown-menu {
