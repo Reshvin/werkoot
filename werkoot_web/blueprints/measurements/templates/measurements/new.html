@@ -11,7 +11,8 @@
         <li>Take your photo in front of a wall that contrasts the color of your arm.</li>
         <li>Avoid any objects in the background of your photo.</li>
         <li>Take the picture in a well lit area to reduce background shadow, or use your camera's flash.</li>
-        <li>For best results upload three pictures.</li>
+        <li>Take one picture with your bicep flexed, one relaxed and one with your arm straight out.</li>
+        <li>Select your three pictures and get your bicep measurement.</li>
     </ul>
     <div class="row d-flex justify-content-center">
         <div class="col-6 col-sm-3 col-lg-2">
@@ -30,7 +31,6 @@
 
 
     <form class="col-lg-10 mx-auto text-center border border-outline-secondary rounded p-3 my-5" action="{{ url_for('measurements.create')}}" method="POST" enctype="multipart/form-data">
-
         <div class="row mx-auto d-flex justify-content-around">
             <div class="col-sm-3 p-0">
                 <div class="card">
@@ -67,7 +67,7 @@
 
 
         <div>  
-            <button class="btn btn-outline-secondary mt-3" type="submit">Get my measurement</button>
+            <button class="btn btn-outline-dark mt-3" type="submit">Get my measurement</button>
             <a class="btn btn-outline-danger mt-3" href="">Cancel</a>
             <p class='mb-0'>Use .jpg, .jpeg, .png or .bmp files</p>
         </div>
