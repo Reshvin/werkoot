@@ -9,26 +9,20 @@
 
     <h3 class='text-center m-3'>USER SIGN UP FORM</h3>
     <form action="{{ url_for('users.create') }}" method='POST'>
-       <div class="container">
-            <div class="row mx-auto">
 
-
-                <label for='first_name'>First Name:</label>
-                <input class='form-control' type='text' name='first_name'  />
-            
-          
-                <label for='last_name'>Last Name:</label>
-                <input class='form-control' type='text' name='last_name' />
-     
-                <label for='email'>Email:</label>
-                <input class='form-control' type='email' name='email' />
-        
+        <div>
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        </div>
+           
+            <label for='first_name'>First Name:</label>
+              <input class='form-control' type='text' name='first_name' />
+    
       
-                <label for='username'>Username:</label>
-                <input class='form-control' type='text' maxlength="18" name='username' />
+            <label for='username'>Username:</label>
+              <input class='form-control' type='text' maxlength="18" name='username' />
 
-             <label for='password'>Password:</label>
-                <input  id="pass" class='form-control' type='password' name='password' maxlength="18" onkeydown="check_pass()" />
+            <label for='password'>Password:</label>
+              <input  id="pass" class='form-control' type='password' name='password' maxlength="18" onkeydown="check_pass()" />
                 <p id="passResult"></p>
 
             <label for='bio'>Profile description:</label>
