@@ -1,7 +1,15 @@
 {% extends "_layout.html" %}
 {% block content %}
-<div class='container-fluid'>
-   <h3 class='text-center m-3'> Your bicep measures <span id="measurement">{{result/10}}</span> <span id="unit">cm</span>.</h3>
-   <button class="btn btn-outline-dark d-block mx-auto" id="changeUnit">Convert to inches</button>
+<div class='container-fluid d-flex flex-column align-items-center justify-content-center' style='height: 55vh;'>
+   <h3 class='text-center'> Your bicep measures:</h3> 
+   <h2 class='m-0'><span id="measurement">{{result/10}}</span> <span id="unit">cm</span>.</h3>
+   <button class="btn btn-outline-dark d-block mt-3 mx-auto" id="changeUnit">Convert to inches</button>
+
+   {% if current_user.is_authenticated %}
+      <p class='mt-3'><a href="#">Save your measurements to your profile.</a></p>
+   {% else %}
+      <p class='mt-3 mb-0'>Want to save your results?</p>
+      <p class='m-0'><a href="#" data-toggle="modal" data-target="#loginModal">Log in</a> or <a href="{{url_for('users.new')}}">sign up</a></p>
+   {% endif %}
 </div>
 {% endblock %}
