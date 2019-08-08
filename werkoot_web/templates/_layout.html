@@ -17,6 +17,8 @@
     {% block header %}{% endblock %}
     <title>{% block title %}{% endblock %}WERKOOT</title>
   </head>
+  <body>
+  <div id="page-container">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Werkoot</a>
@@ -93,13 +95,12 @@
             </div>
           </div>
         </div>
-    </div>
+
   </nav>
-  <body>
+  <div id="page-content">
     {% block content %}
     {% endblock %}
-  </body>
-  <br>
+  </div>
   <!-- Footer -->
 <footer class="page-footer font-small bg-dark pt-4 text-light">
     <!-- Footer Links -->
@@ -170,4 +171,6 @@
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
+</div>
+</body>
 </html>
