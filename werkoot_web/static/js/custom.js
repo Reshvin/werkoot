@@ -33,3 +33,25 @@ function fileThree(input){
         $('#fileThreeImg').attr('src', 'http://werkoot.s3.amazonaws.com/photo_example_picture3.jpg')
     }
 }
+
+
+// Password Strenght
+
+function check_pass(){
+    const pass = document.getElementById("pass").value;
+    const result = document.getElementById("passResult");
+    if (pass.length == 0){
+      result.innerHTML = ''  
+    } else if (pass.length <= 6){
+      result.innerHTML = "Password is Weak!!"
+    } else if (pass.length <= 9){
+      result.innerHTML = "Password is Medium!!"
+    } else if (pass.length <= 12){
+      result.innerHTML="Password is Strong!!"
+    }
+  
+  }
+  
+
+
+
