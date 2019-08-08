@@ -34,6 +34,29 @@ function fileThree(input){
     }
 }
 
+
+
+// Password Strenght
+
+function check_pass(){
+    const pass = document.getElementById("pass").value;
+    const result = document.getElementById("passResult");
+    if (pass.length == 0){
+      result.innerHTML = ''  
+    } else if (pass.length <= 6){
+      result.innerHTML = "Password is Weak!!"
+    } else if (pass.length <= 9){
+      result.innerHTML = "Password is Medium!!"
+    } else if (pass.length <= 12){
+      result.innerHTML="Password is Strong!!"
+    }
+  
+  }
+  
+
+
+
+
 function changeUnits(){
     if ($('#changeUnit').text() === "Convert to inches"){
         measCM = parseFloat($('#measurement').text())
@@ -50,3 +73,4 @@ function changeUnits(){
 }
 
 $(document).on('click', '#changeUnit', changeUnits)
+
