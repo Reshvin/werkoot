@@ -6,7 +6,10 @@
    <button class="btn btn-outline-dark d-block mt-3 mx-auto" id="changeUnit">Convert to inches</button>
 
    {% if current_user.is_authenticated %}
-      <p class='mt-3'><a href="#">Save your measurements to your profile.</a></p>
+      <form action="{{ url_for('measurements.update') }}" method='POST'>
+         <input type="hidden" name="bicep" id="bicep" value="{{result}}" />
+         <button class="btn btn-link" type="submit">Save your measurements to your profile.</button>
+      </form>
    {% else %}
       <p class='mt-3 mb-0'>Want to save your results?</p>
       <p class='m-0'><a href="#" data-toggle="modal" data-target="#loginModal">Log in</a> or <a href="{{url_for('users.new')}}">sign up</a></p>

@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template,request,redirect,url_for,flash
 from werkoot_web.util.filehelper import allowed_file
 from werkoot_web.util.measurement.arm import measure
+from models.measurement import Measurement
+from flask_login import current_user
 import numpy as np
 import cv2
 
@@ -53,5 +55,12 @@ def create():
 
     return render_template('measurements/show.html', result=result)
 
+@measurements_blueprint.route('/update', methods=['POST'])
+def update():
+    bicep = request.form.get('bicep')
 
+    measurement = Measurement(bicep=bicep, user=current_user.id)
+    measurement.save()
+
+    return redirect(url_for('users.show', username=current_user.username))
 

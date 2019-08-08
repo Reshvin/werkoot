@@ -5,4 +5,4 @@ from models.user import User
 
 class Measurement(BaseModel):
     bicep = pw.DecimalField()
-    user = pw.ForeignKeyField(User, backref = 'measurments')
+    user = pw.ForeignKeyField(User, backref = 'measurements')
