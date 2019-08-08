@@ -81,6 +81,18 @@ def index():
 #         else:
 #             return redirect (url_for('index'))
 
+@users_blueprint.route('/search', methods=['POST'])
+def search():
+    text = request.form.get('search')
+    if text == '':
+        text = "All users"
+        users = User.select().order_by(User.username.asc())
+    else:
+        search = '%' + text + '%'
+        text = "Usernames containing: " + text
+        users = User.select().where(User.username ** search)
+    
+    return render_template('users/users.html', users = users, text = text)
 
 @users_blueprint.route('/<id>', methods=['POST'])
 def update(id):
