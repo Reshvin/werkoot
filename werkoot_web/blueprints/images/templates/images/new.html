@@ -1,0 +1,14 @@
+<h1>Upload Your Files Bro</h1>
+
+<form action="{{url_for('images.create')}}" method="POST" enctype="multipart/form-data">
+
+    <label for="user_file">Upload Your File</label>
+
+    <input type="file" name="user_file">
+
+    <input type="text" name="comment">
+    
+    <button type="submit">Upload</button>
+
+</form>
+

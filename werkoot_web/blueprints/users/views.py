@@ -21,10 +21,25 @@ def create():
     email = request.form.get('email')
     username = request.form.get('username')
     password = request.form.get('password')
+    bio = request.form.get('bio')
+    power = False
+    endurance = False
+    calisthenic = False
+    team_sport = False
+
+    if request.form.get('power'):
+        power = True
+    if request.form.get('endurance'):
+        endurance = True
+    if request.form.get('calisthenic'):
+        calisthenic = True
+    if request.form.get('team_sport'):
+        team_sport = True
+    
 
     hashed_password = generate_password_hash(password)
 
-    u = User(first_name=first_name, last_name=last_name,email=email,username=username,password =hashed_password)
+    u = User(first_name=first_name, last_name=last_name,email=email,username=username,password =hashed_password,power=power,endurance=endurance,calisthenics=calisthenic,teamsports=team_sport,bio = bio)
 
     users = User.select()
     for user in users:
@@ -39,7 +54,6 @@ def create():
         flash("Password length has to be more than 6")
         return redirect(url_for('users.new'))
         
-
     if u.save():
         login_user(u)
         return redirect(url_for('users.show',username = current_user.username))

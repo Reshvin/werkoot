@@ -35,6 +35,7 @@ function fileThree(input){
 }
 
 
+
 // Password Strenght
 
 function check_pass(){
@@ -54,4 +55,22 @@ function check_pass(){
   
 
 
+
+
+function changeUnits(){
+    if ($('#changeUnit').text() === "Convert to inches"){
+        measCM = parseFloat($('#measurement').text())
+        measIn = measCM * 0.39
+        measIn = measIn.toFixed(1)
+        $('#measurement').text(measIn)
+        $('#unit').text('in')
+        $('#changeUnit').text("Convert to centimeters")
+    } else {
+        $('#measurement').text(measCM)
+        $('#unit').text('cm')
+        $('#changeUnit').text("Convert to inches")
+    }
+}
+
+$(document).on('click', '#changeUnit', changeUnits)
 

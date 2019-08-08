@@ -1,7 +1,7 @@
-{%extends "_layout.html"%}
-{%block content%}
-
-
-   <h3> Your bicep measures {{result}} mm.</h3>
-
-{%endblock%}
+{% extends "_layout.html" %}
+{% block content %}
+<div class='container-fluid'>
+   <h3 class='text-center m-3'> Your bicep measures <span id="measurement">{{result/10}}</span> <span id="unit">cm</span>.</h3>
+   <button class="btn btn-outline-dark d-block mx-auto" id="changeUnit">Convert to inches</button>
+</div>
+{% endblock %}

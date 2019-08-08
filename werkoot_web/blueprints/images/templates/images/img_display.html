@@ -1,0 +1,16 @@
+{%extends "_layout.html"%}
+{%block content%}
+
+
+<img style = "width:400px;height:400px" src = "{{image.image_url}}" />
+{%for comment in image.comments%}
+{{comment.comment}}
+{%endfor%}
+<form action="{{ url_for('comments.create') }}" method="POST" >
+        <label for="comment">LEAVE A COMMENT</label>
+            <input type="text" name="comment">
+            <input type="hidden" name='image' value='{{image.id}}'>
+                <button type="submit">POST</button>
+</form>
+
+{%endblock%}
