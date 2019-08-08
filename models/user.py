@@ -10,6 +10,11 @@ class User(BaseModel):
     password = pw.CharField()
     username = pw.CharField(unique=True)
     photo = pw.CharField(null=True)
+    power = pw.BooleanField(default=False)
+    endurance = pw.BooleanField(default=False)
+    calisthenics = pw.BooleanField(default=False)
+    teamsports = pw.BooleanField(default=False)
+    bio = pw.TextField()
 
     def is_authenticated(self):
         return True

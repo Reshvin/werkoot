@@ -22,18 +22,24 @@ def create():
 
     file    = request.files["user_file"]
 
+    comment = request.form.get('comment')
+
     if file.filename == "":
         return "Please select a file"
 
     if file and allowed_file(file.filename):
         i = Image(user = current_user.id,img_name = file.filename)
         i.save()
+        
+        c = Comment(comment = comment, image = i.id, user = current_user.id)
+        c.save()
+
         output   	  = upload_file_to_s3(file)
-        return redirect(url_for('index'))
+        return redirect(url_for('users.show',username = current_user.username))
 
     else:
         return redirect(url_for('images.new', id=id))
-    
+
 
 @images_blueprint.route('/<username>', methods=["GET"])
 def show(username):
