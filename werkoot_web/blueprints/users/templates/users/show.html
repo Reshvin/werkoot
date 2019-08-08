@@ -1,13 +1,26 @@
 {%extends "_layout.html"%}
 {%block content%}
 <h3><em>{{user.username}}</em></h3>
+{%if user.power%}
+<h4>POWER</h4>
+{%endif%}
+{%if user.endurance%}
+<h4>ENDURANCE</h4>
+{%endif%}
+{%if user.calisthenics%}
+<h4>CALISTHENICS</h4>
+{%endif%}
+{%if user.teamsports%}
+<h4>TEAM SPORT</h4>
+{%endif%}
+
 <img style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
+{{ user.bio }}
 
 {%for image in user.images%}
 <a href="{{ url_for('images.display_img', id=image.id) }}">
     <img style = "width:200px;height:200px" src = "{{image.image_url}}" />
 </a>
-
 {%endfor%}
 
 {%if current_user.is_authenticated%}

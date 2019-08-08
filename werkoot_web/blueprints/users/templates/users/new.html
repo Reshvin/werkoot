@@ -9,27 +9,53 @@
 
     <h3 class='text-center m-3'>USER SIGN UP FORM</h3>
     <form action="{{ url_for('users.create') }}" method='POST'>
-       
-            
-            <label for='first_name'>First Name:</label>
-            <input class='form-control' type='text' name='first_name' />
-    
-      
-            <label for='last_name'>Last Name:</label>
-            <input class='form-control' type='text' name='last_name' />
+       <div class="container">
+            <div class="row mx-auto">
 
-            <label for='email'>Email:</label>
-            <input class='form-control' type='email' name='email' />
-    
-  
-            <label for='username'>Username:</label>
-            <input class='form-control' type='text' name='username' />
+
+                <label for='first_name'>First Name:</label>
+                <input class='form-control' type='text' name='first_name'  />
+            
+          
+                <label for='last_name'>Last Name:</label>
+                <input class='form-control' type='text' name='last_name' />
+     
+                <label for='email'>Email:</label>
+                <input class='form-control' type='email' name='email' />
+        
       
- 
-            <label for='password'>Password:</label>
-            <input class='form-control' type='password' name='password' />
+                <label for='username'>Username:</label>
+                <input class='form-control' type='text' maxlength="18" name='username' />
+
+             <label for='password'>Password:</label>
+                <input  id="pass" class='form-control' type='password' name='password' maxlength="18" onkeydown="check_pass()" />
+                <p id="passResult"></p>
+
+            <label for='bio'>Profile description:</label>
+            <input class='form-control' type='text' name='bio' />
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" name="power" id="power">
+                    <label class="form-check-label" for="power">
+                      Power :
+                    </label>
+                <input class="form-check-input" type="checkbox" value="true" name='endurance' id="endurance">
+                    <label class="form-check-label" for="endurance">
+                      Endurance :
+                    </label>
+                <input class="form-check-input" type="checkbox" value="true" name='calisthenic' id="calisthenic">
+                    <label class="form-check-label" for="calisthenics">
+                      Calisthenics :
+                    </label>
+                <input class="form-check-input" type="checkbox" value="true" name='team_sport' id="team_sport">
+                    <label class="form-check-label" for="team_sport">
+                      Team Sports :
+                    </label>
+            </div>
+
 
         <button class = 'btn btn-danger d-block mx-auto' type='submit'>SUBMIT</button>   
+
     </form>
     
 {%endblock%}
