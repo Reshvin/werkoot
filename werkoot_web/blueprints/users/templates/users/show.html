@@ -28,12 +28,20 @@
 {%if current_user.is_follow(user.id)%}
 
 <form action="{{url_for('fan_idol.unfollow', id = user.id)}}" method = 'POST'>
+    <div>
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    </div>
+    
     <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
 </form>
 
 {%else%}
 
 <form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
+    <div>
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    </div>
+
         <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
 </form>
 
