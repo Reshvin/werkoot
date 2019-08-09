@@ -36,9 +36,7 @@ def create():
         c.save()
 
         output   	  = upload_file_to_s3(file)
-
-        c = Comment(comment = comment, image = i.id, user = current_user.id)
-        c.save()
+        
         return redirect(url_for('users.show',username = current_user.username))
 
     else:

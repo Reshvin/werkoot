@@ -7,6 +7,9 @@
 
    {% if current_user.is_authenticated %}
       <form action="{{ url_for('measurements.update') }}" method='POST'>
+         <div>
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+         </div>
          <input type="hidden" name="bicep" id="bicep" value="{{result}}" />
          <button class="btn btn-link" type="submit">Save your measurements to your profile.</button>
       </form>
