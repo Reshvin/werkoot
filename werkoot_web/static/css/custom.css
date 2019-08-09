@@ -186,6 +186,22 @@ footer{
     color: white;
 }
 
+
+
+/* checkbox */
+.checkboxes {
+  text-align:center;
+ }
+
+.checkboxes input{
+  margin: 0px 0px 0px 0px;
+ }
+
+ .checkboxes label{
+   margin: 0px 20px 0px 3px;
+ }
+
+
 /* Search results */
 .search-display{
   text-decoration: none;
@@ -197,3 +213,4 @@ footer{
   background: #343a40;
   color: #fff;
 }
+
