@@ -8,6 +8,10 @@ from werkoot_web.blueprints.fan_idol.views import fan_idol_blueprint
 from werkoot_web.blueprints.comments.views import comments_blueprint
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
+from flask_wtf.csrf import CSRFProtect
+
+csrf = CSRFProtect()
+csrf.init_app(app)
 
 assets = Environment(app)
 assets.register(bundles)
