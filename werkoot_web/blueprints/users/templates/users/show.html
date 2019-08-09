@@ -1,75 +1,85 @@
 {%extends "_layout.html"%}
 {%block content%}
 <div class="container">
- <div class="userbox m-3 ">
+ <div class="row">
 
-    <div class="profile_image d-flex justify-content-center m-3">
-        <img style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
+     <div class="userbox m-3 ">
+   
+       <div class="profile_image d-flex justify-content-center m-3">
+           <img style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
+       </div>
+       <h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
+       
+       <div class="main-wrapper">
+           {%if user.power%}
+           <div class="badge yellow">
+               <div class="circle"></div>
+               <div class="ribbon">Power</div>
+           </div>
+           {%endif%}
+           {%if user.endurance%}
+           <div class="badge orange">
+               <div class="circle"> </i></div>
+               <div class="ribbon">Endurance</div>
+           </div>
+           {%endif%}
+           {%if user.calisthenics%}
+           <div class="badge pink">
+               <div class="circle"> </div>
+               <div class="ribbon">Calistanic</div>
+           </div>
+           {%endif%}
+           {%if user.teamsports%}
+           <div class="badge red">
+               <div class="circle"></div>
+               <div class="ribbon">Team Sport</div>
+           </div>
+           {%endif%}
+           
+       </div>     
+     </div>
+    <div class="wrappertwo">
+
+        <div class="bio_body m-3">
+            Bio
+            {{ user.bio }}
+        </div>
+        <div class="content_image m-3">
+   
+            {%for image in user.images%}
+            <a href="{{ url_for('images.display_img', id=image.id) }}">
+                <img style = "width:200px;height:200px" src = "{{image.image_url}}" />
+            </a>
+            {%endfor%}
+        </div>
     </div>
-    <h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
-    
-    <div class="main-wrapper">
-        {%if user.power%}
-        <div class="badge yellow">
-            <div class="circle"></div>
-            <div class="ribbon">Power</div>
-        </div>
-        {%endif%}
-        {%if user.endurance%}
-        <div class="badge orange">
-            <div class="circle"> </i></div>
-            <div class="ribbon">Endurance</div>
-        </div>
-        {%endif%}
-        {%if user.calisthenics%}
-        <div class="badge pink">
-            <div class="circle"> </div>
-            <div class="ribbon">Calistanic</div>
-        </div>
-        {%endif%}
-        {%if user.teamsports%}
-        <div class="badge red">
-            <div class="circle"></div>
-            <div class="ribbon">Team Sport</div>
-        </div>
-        {%endif%}
-        
-    </div>     
+       
+       {%if current_user.is_authenticated%}
+       {%if current_user.id != user.id%}
+       {%if current_user.is_follow(user.id)%}
+       
+       <form action="{{url_for('fan_idol.unfollow', id = user.id)}}" method = 'POST'>
+           <div>
+               <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+           </div>
+           
+           <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
+       </form>
+       
+       {%else%}
+       
+       <form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
+           <div>
+               <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+           </div>
+       
+               <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
+       </form>
+       
+       {%endif%}
+       {%endif%}
+       {%endif%}
  </div>
-
-    {{ user.bio }}
-    
-    {%for image in user.images%}
-    <a href="{{ url_for('images.display_img', id=image.id) }}">
-        <img style = "width:200px;height:200px" src = "{{image.image_url}}" />
-    </a>
-    {%endfor%}
-    
-    {%if current_user.is_authenticated%}
-    {%if current_user.id != user.id%}
-    {%if current_user.is_follow(user.id)%}
-    
-    <form action="{{url_for('fan_idol.unfollow', id = user.id)}}" method = 'POST'>
-        <div>
-            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        </div>
-        
-        <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
-    </form>
-    
-    {%else%}
-    
-    <form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
-        <div>
-            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        </div>
-    
-            <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
-    </form>
-    
-    {%endif%}
-    {%endif%}
-    {%endif%}
 </div>
 {%endblock%}
 

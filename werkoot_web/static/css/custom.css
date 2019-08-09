@@ -333,3 +333,21 @@ footer{
   h3 {
     text-align: center;
   }
+
+  /* bio body */
+  .bio_body {
+    border:black;
+    border-style: solid;
+    width: 700px;
+    height: 250px;
+    
+  }
+
+  /* content image */
+  .content_image {
+    display: inline-block;
+  }
+
+  .wrappertwo {
+    display: inline-block;
+  }
