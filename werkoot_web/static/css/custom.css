@@ -227,7 +227,7 @@ footer{
 	max-width: 900px;
 	margin: 4em auto;
   text-align: start;
-  padding: 8px
+  
 }
 
 
@@ -341,13 +341,15 @@ footer{
     width: 700px;
     height: 250px;
     
+    
+    
   }
 
   /* content image */
-  .content_image {
+  /* .content_image {
     display: inline-block;
-  }
+  } */
 
-  .wrappertwo {
+/* .wrappertwo {
     display: inline-block;
-  }
+} */
