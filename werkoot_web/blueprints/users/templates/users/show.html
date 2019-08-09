@@ -3,16 +3,40 @@
 <div class="container">
  <div class="userbox m-3 ">
 
-
 <div class="profile_image d-flex justify-content-center m-3">
-    {% if user.username == current_user.username %}
-        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#newProfilePicture" style="position:absolute;bottom:0;">New profile picture</button>
-    {% endif %}
     <img style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
 </div>
+<h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
 
+<div class="main-wrapper">
+    {%if user.power%}
+    <div class="badge yellow">
+        <div class="circle"></div>
+        <div class="ribbon">Power</div>
+    </div>
+    {%endif%}
+    {%if user.endurance%}
+    <div class="badge orange">
+        <div class="circle"> </i></div>
+        <div class="ribbon">Endurance</div>
+    </div>
+    {%endif%}
+    {%if user.calisthenics%}
+    <div class="badge pink">
+        <div class="circle"> </div>
+        <div class="ribbon">Calistanic</div>
+    </div>
+    {%endif%}
+    {%if user.teamsports%}
+    <div class="badge red">
+        <div class="circle"></div>
+        <div class="ribbon">Team Sport</div>
+    </div>
+    {%endif%}
 
-<!-- <img style = "width:300px;height:300px" src = "{{user.profile_image_url}}"> -->
+</div>     
+</div>
+
 {{ user.bio }}
 
 {%for image in user.images%}
@@ -29,78 +53,24 @@
     <div>
         <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
     </div>
-    <h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
-    
-    <div class="main-wrapper">
-        {%if user.power%}
-        <div class="badge yellow">
-            <div class="circle"></div>
-            <div class="ribbon">Power</div>
-        </div>
-        {%endif%}
-        {%if user.endurance%}
-        <div class="badge orange">
-            <div class="circle"> </i></div>
-            <div class="ribbon">Endurance</div>
-        </div>
-        {%endif%}
-        {%if user.calisthenics%}
-        <div class="badge pink">
-            <div class="circle"> </div>
-            <div class="ribbon">Calistanic</div>
-        </div>
-        {%endif%}
-        {%if user.teamsports%}
-        <div class="badge red">
-            <div class="circle"></div>
-            <div class="ribbon">Team Sport</div>
-        </div>
-        {%endif%}
-        
-    </div>     
- </div>
 
-    {{ user.bio }}
-    
-    {%for image in user.images%}
-    <a href="{{ url_for('images.display_img', id=image.id) }}">
-        <img style = "width:200px;height:200px" src = "{{image.image_url}}" />
-    </a>
-    {%endfor%}
-    
-    {%if current_user.is_authenticated%}
-    {%if current_user.id != user.id%}
-    {%if current_user.is_follow(user.id)%}
-    
-    <form action="{{url_for('fan_idol.unfollow', id = user.id)}}" method = 'POST'>
-        <div>
-            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        </div>
-        
-        <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
-    </form>
-    
-    {%else%}
-    
-    <form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
-        <div>
-            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        </div>
-    
-            <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
-    </form>
-    
-    {%endif%}
-    {%endif%}
-    {%endif%}
+    <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
+</form>
+
+{%else%}
+
+<form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
+    <div>
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    </div>
+
+        <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
+</form>
+
+{%endif%}
+{%endif%}
+{%endif%}
 </div>
-
-
-
-
-
-
-
 
 <div class="modal fade" id="newProfilePicture" tabindex="-1" role="dialog" aria-labelledby="newProfilePictureTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
