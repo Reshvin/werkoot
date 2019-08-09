@@ -14,7 +14,15 @@
 <h4>TEAM SPORT</h4>
 {%endif%}
 
-<img style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
+<div class="col-6 col-sm-4 col-lg-3">
+    {% if user.username == current_user.username %}
+        <button type="button" class="photo-link btn btn-link" data-toggle="modal" data-target="#newProfilePicture" style="position:absolute;bottom:0;">New profile picture</button>
+    {% endif %}
+    <img style="width:100%;" src="{{user.profile_image_url}}">
+</div>
+
+
+<!-- <img style = "width:300px;height:300px" src = "{{user.profile_image_url}}"> -->
 {{ user.bio }}
 
 {%for image in user.images%}
@@ -48,5 +56,35 @@
 {%endif%}
 {%endif%}
 {%endif%}
-{%endblock%}
 
+
+
+
+
+
+
+<div class="modal fade" id="newProfilePicture" tabindex="-1" role="dialog" aria-labelledby="newProfilePictureTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newProfilePictureTitle">Upload profile photo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form class="text-center" action="{{ url_for('images.upload_file', id=user.id)}}" method="POST" enctype="multipart/form-data">
+                        
+                        <input type="file" name="user_file" id="user_file" class="inputfile" />
+                        <label for="user_file">Choose a file</label>
+                
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <button class="btn btn-outline-secondary" type="submit">Upload</button>
+                       
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

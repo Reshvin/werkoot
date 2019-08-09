@@ -66,25 +66,25 @@ def display_img(id):
 
 
         
-# @images_blueprint.route('/<id>/images', methods=['POST'])
-# def upload_file(id):
+@images_blueprint.route('/<id>/images', methods=['POST'])
+def upload_file(id):
 
-#     if "user_file" not in request.files:
-#         return "No user_file key in request.files"
+    if "user_file" not in request.files:
+        return "No user_file key in request.files"
 
-#     file    = request.files["user_file"]
+    file    = request.files["user_file"]
 
-#     if file.filename == "":
-#         return "Please select a file"
+    if file.filename == "":
+        return "Please select a file"
 
-#     if file and allowed_file(file.filename):
-#         user = User.update(photo=file.filename).where(User.id==id)
-#         user.execute()
-#         output   	  = upload_file_to_s3(file)
-#         return str(output)
+    if file and allowed_file(file.filename):
+        user = User.update(photo=file.filename).where(User.id==id)
+        user.execute()
+        output   	  = upload_file_to_s3(file)
+        return str(output)
 
-#     else:
-#         return redirect(url_for('users.edit', id=id))
+    else:
+        return redirect(url_for('users.edit', id=id))
     
 
 
