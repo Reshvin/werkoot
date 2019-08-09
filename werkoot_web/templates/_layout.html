@@ -31,24 +31,33 @@
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('measurements.new')}}">Bicep Measurement</a>
         </li>
-        <li class="nav-item">
           {%if current_user.is_authenticated%}
-          <a class="nav-link" href="{{url_for('sessions.logout')}}"  >
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('users.show', username = current_user.username)}}">My Profile</a>
+        </li>
+        <li class="nav-item"></li>
+          <a class="nav-link" href="{{url_for('sessions.logout')}}">
               Logout
           </a>
+        </li>
           {%else%}
+        <li class="nav-item">
           <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">
             Login
           </a>
-          {%endif%}
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('users.new')}}">
+              Sign up
+            </a>
+          </li>
+          {%endif%}
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <div>
-          <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        </div>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+      <form action="{{ url_for('users.search') }}" method="POST" class="form-inline my-2 my-lg-0">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search all users">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   <!--  -->
