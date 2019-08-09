@@ -8,7 +8,7 @@
 }
 
 #page-content{
-  padding-bottom: 230px;
+  padding-bottom: 125px;
 }
 
 footer{
@@ -200,4 +200,17 @@ footer{
  .checkboxes label{
    margin: 0px 20px 0px 3px;
  }
+
+
+/* Search results */
+.search-display{
+  text-decoration: none;
+  color: #343a40;
+}
+
+.search-display:hover {
+  text-decoration: none;
+  background: #343a40;
+  color: #fff;
+}
 
