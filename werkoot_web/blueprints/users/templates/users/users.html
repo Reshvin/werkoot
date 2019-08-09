@@ -8,8 +8,8 @@
 
     {% for user in users %}
        
-    <a class="user-list" href="{{ url_for('users.show', username=user.username) }}">
-            <div class="card w-50 mx-auto user-list">
+    <a class="user-list search-display" href="{{ url_for('users.show', username=user.username) }}">
+            <div class="card w-50 mx-auto user-list search-display">
                 <div class="card-body p-1 d-flex flex-row">
                     <div class="d-block" style="width:40px;height:40px;overflow:hidden;background-color:white;">
                         <img class="h-100 d-block mx-auto" src="{{user.profile_image_url}}" alt="">

@@ -186,3 +186,14 @@ footer{
     color: white;
 }
 
+/* Search results */
+.search-display{
+  text-decoration: none;
+  color: #343a40;
+}
+
+.search-display:hover {
+  text-decoration: none;
+  background: #343a40;
+  color: #fff;
+}
