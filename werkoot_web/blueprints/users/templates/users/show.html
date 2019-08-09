@@ -4,7 +4,12 @@
  <div class="userbox m-3 ">
 
 <div class="profile_image d-flex justify-content-center m-3">
+    <div style="position:relative">
+    {% if user.username == current_user.username %}
+        <button type="button" class="photo-link btn btn-link" data-toggle="modal" data-target="#newProfilePicture" style="position:absolute;bottom:0;">New profile picture</button>
+    {% endif %}
     <img style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
+    </div>
 </div>
 <h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
 
@@ -84,8 +89,8 @@
             <div class="modal-body">
                     <form class="text-center" action="{{ url_for('images.upload_file', id=user.id)}}" method="POST" enctype="multipart/form-data">
                         
-                        <input type="file" name="user_file" id="user_file" class="inputfile" />
-                        <label for="user_file">Choose a file</label>
+                        <input type="file" name="user_file" id="user_file" class="inputfile mb-0" />
+                        <label class="mb-0" for="user_file">Choose a file</label>
                 
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <button class="btn btn-outline-secondary" type="submit">Upload</button>
