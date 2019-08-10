@@ -44,14 +44,14 @@ def create():
     users = User.select()
     for user in users:
         if user.username == username:
-            flash('Username not available')
+            flash('Username not available.', 'danger')
             return redirect(url_for('users.new'))
         elif user.email == email:
-            flash('Email not available')
+            flash('The provided email is already in use.','warning')
             return redirect(url_for('users.new'))
 
     if len(password) < 6:
-        flash("Password length has to be more than 6")
+        flash("Password length has to be more than 6", 'warning')
         return redirect(url_for('users.new'))
         
     if u.save():
@@ -67,7 +67,9 @@ def show(username):
 
 @users_blueprint.route('/', methods=["GET"])
 def index():
-    return "INDEX-USERS.VIEW.py"
+    users = User.select().order_by(User.username.asc())
+    text = "All users"
+    return render_template('users/users.html', users = users, text = text)
 
 
 # @users_blueprint.route('/<id>/edit', methods=['GET'])
