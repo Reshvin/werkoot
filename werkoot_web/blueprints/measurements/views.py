@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,request,redirect,url_for,flash
+from flask import Blueprint, render_template, request, redirect,url_for, flash
 from werkoot_web.util.filehelper import allowed_file
 from werkoot_web.util.measurement.arm import measure
 from models.measurement import Measurement
@@ -43,7 +43,8 @@ def create():
 
     result = 0
     if len(results) == 0:
-        return "Unable to get a measurement"
+        flash("Unable to calculate measurment, please try with different images.", "danger")
+        return redirect(url_for('measurements.new'))
     
     for measurement in results:
         result += measurement

@@ -15,29 +15,35 @@
         </div>
 
            <div class="container">
-
+            <div class="form-group">
              <label for='first_name'>First Name:</label>
                <input class='form-control' type='text' name='first_name' />
- 
+              </div>
+              <div class="form-group">
              <label for='last_name'>Last Name:</label>
                <input class='form-control' type='text' name='last_name' />
-             
+              </div>
+              <div class="form-group">
              <label for='email'>Email:</label>
-               <input class='form-control' type='text' name='email' />
-       
+               <input class='form-control' type='email' name='email' />
+              </div>
+              <div class="form-group">
              <label for='username'>Username:</label>
                <input class='form-control' type='text' maxlength="18" name='username' />
- 
+              </div>
+              <div class="form-group">
              <label for='password'>Password:</label>
                <input  id="pass" class='form-control' type='password' name='password' maxlength="18" onkeydown="check_pass()" />
-                 <p id="passResult"></p>
- 
+                 <small id="passResult"></small>
+                </div>
+                <div class="form-group">
              <label for='bio'>Profile description:</label>
              <input class='form-control' type='text' name='bio' />
- 
+              </div>
+              <div class="form-group">
              <div class="form-check checkboxes ">
                  
-                 <input class=" " type="checkbox" value="true" name="power" id="power">
+                 <input class="" type="checkbox" value="true" name="power" id="power">
                      <label class="form-check-label " for="power">
                        Power
                      </label>
