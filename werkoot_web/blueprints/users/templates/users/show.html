@@ -60,7 +60,7 @@
                     </form>
                 {% endif %}
                 <a href="{{ url_for('images.display_img', id=image.id) }}">
-                    <img src = "{{image.image_url}}" />
+                    <img class="w-100" src = "{{image.image_url}}" />
                 </a>
             </div>
             {%endfor%}
