@@ -53,9 +53,17 @@
         <div class="content_image m-3">
    
             {%for image in user.images%}
-            <a href="{{ url_for('images.display_img', id=image.id) }}">
-                <img style = "width:200px;height:200px" src = "{{image.image_url}}" />
-            </a>
+            <div class='user-image'>
+                {% if current_user.id == user.id %}
+                    <form action="{{ url_for('images.delete', id=image.id) }}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <button class="btn delete-image">Delete</button>
+                    </form>
+                {% endif %}
+                <a href="{{ url_for('images.display_img', id=image.id) }}">
+                    <img src = "{{image.image_url}}" />
+                </a>
+            </div>
             {%endfor%}
         </div>
     </div>
