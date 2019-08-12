@@ -1,0 +1,46 @@
+{%extends "_layout.html"%}
+{%block content%}
+<h3 class= 'text-center'>EDIT PROFILE</h3>
+
+    {% for error in errors%}
+    <li>{{error}}</li>
+    {%endfor%}
+<div class = 'container'>
+
+<form action="{{ url_for('users.update', id = user.id) }}" method='POST'>
+    <div>
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    </div>
+    <div class ='form-group'>
+        <label for='old_email'>Email:</label>
+            <input class = 'form-control' type='email' name='old_email' value = {{user.email}} />
+    </div>
+    <div class ='form-group'>
+        <label for='old_username'>Username:</label>
+            <input class ='form-control' type='text' name='old_username' value = {{user.username}} />
+    </div>
+    <div class ='form-group'>
+        <label for="old_password">Password:</label>
+            <input type="password" name="old_password">
+    </div>
+    <div class ='form-group'>
+        <label for="new_email">New Email</label>
+            <input type="email" name="new_email">
+    </div>
+    <div class ='form-group'>
+        <label for="new_username">New Username:</label>
+            <input type="text" name="new_username">
+    </div>
+    <div class ='form-group'>
+        <label for='new_password'>New Password:</label>
+            <input type='password' name='new_password'/>
+    </div> 
+    <div class ='form-group'>
+        <label for='confirm_password'>Confirm Password:</label>
+            <input type='password' name='confirm_password'/>
+    </div> 
+    <button type='submit'>SUBMIT</button>   
+</form>
+
+</div>
+{%endblock%}

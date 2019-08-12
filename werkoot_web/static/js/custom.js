@@ -34,6 +34,17 @@ function fileThree(input){
     }
 }
 
+function viewProfileImage(input){
+    if (input.files && input.files[0]){
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            $('#profile_image_placeholder').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0])
+    } else {
+        $('#profile_image_placeholder').attr('src', 'https://www.fwhealth.org/wp-content/uploads/2017/03/placeholder-500x500.jpg')
+    }
+}
 
 
 // Password Strenght

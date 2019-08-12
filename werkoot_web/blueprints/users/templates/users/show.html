@@ -3,12 +3,18 @@
     <div class="">
     <div class="d-inline-flex ">
 
+
         <div class="userbox m-3 ">
-    
-        <div class="profile_image d-flex justify-content-center m-3">
-            <img style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
+   
+       <div class="d-flex justify-content-center m-3">
+             <div style="position:relative">
+    {% if user.username == current_user.username %}
+        <button type="button" class="photo-link btn btn-link" data-toggle="modal" data-target="#newProfilePicture" style="position:absolute;bottom:0;">New profile picture</button>
+    {% endif %}
+          <img  class="profile-image" style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
         </div>
-        <h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
+       </div>
+       <h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
         
         <div class="main-wrapper">
             {%if user.power%}
@@ -36,7 +42,13 @@
             </div>
             {%endif%}
             
-        </div>     
+        </div>         
+     </div>
+    <div class="wrappertwo">
+
+        <div class="bio_body m-3">
+            Bio
+            {{ user.bio }}
         </div>
         <div>
 
@@ -81,5 +93,34 @@
         {%endif%}
     </div>
     </div>
-{%endblock%}
 
+
+<div class="modal fade" id="newProfilePicture" tabindex="-1" role="dialog" aria-labelledby="newProfilePictureTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newProfilePictureTitle">Upload profile photo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form class="text-center" action="{{ url_for('images.upload_file', id=user.id)}}" method="POST" enctype="multipart/form-data">
+                        
+                        <input type="file" name="user_file" id="user_file" class="inputfile mb-0" onchange="viewProfileImage(this)"/>
+                        <label class="mb-0" for="user_file">Choose a file</label>
+                
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <button class="btn btn-outline-secondary" type="submit">Upload</button>
+                       
+                    </form>
+
+                    <div id="profile_image_viewer" class="mt-3">
+                        <img id="profile_image_placeholder" class='profile-image upload-view' src="https://www.fwhealth.org/wp-content/uploads/2017/03/placeholder-500x500.jpg">
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

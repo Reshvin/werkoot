@@ -2,6 +2,7 @@ from flask import Blueprint, render_template,request,url_for,redirect,flash
 from werkzeug.security import generate_password_hash,check_password_hash
 from models.image import Image
 from models.user import User
+from models.comment import Comment
 from flask_login import current_user
 from werkoot_web.util.helpers import allowed_file,upload_file_to_s3
 
@@ -18,14 +19,16 @@ def new():
 @images_blueprint.route('/', methods=['POST'])
 def create():
     if "user_file" not in request.files:
-        return "No user_file key in request.files"
+        flash("Please select a file to upload", "warning")
+        return redirect(url_for('images.new'))
 
     file    = request.files["user_file"]
 
     comment = request.form.get('comment')
 
     if file.filename == "":
-        return "Please select a file"
+        flash("Please select a file to upload", "warning")
+        return redirect(url_for('images.new'))
 
     if file and allowed_file(file.filename):
         i = Image(user = current_user.id,img_name = file.filename)
@@ -35,10 +38,12 @@ def create():
         c.save()
 
         output   	  = upload_file_to_s3(file)
+        flash(str(output), 'info')
         return redirect(url_for('users.show',username = current_user.username))
 
     else:
-        return redirect(url_for('images.new', id=id))
+        flash("Sorry, we were unable to upload your photo. Please try again.", "warning")
+        return redirect(url_for('images.new'))
 
 
 @images_blueprint.route('/<username>', methods=["GET"])
@@ -62,25 +67,29 @@ def display_img(id):
 
 
         
-# @images_blueprint.route('/<id>/images', methods=['POST'])
-# def upload_file(id):
+@images_blueprint.route('/<id>/images', methods=['POST'])
+def upload_file(id):
 
-#     if "user_file" not in request.files:
-#         return "No user_file key in request.files"
+    if "user_file" not in request.files:
+        flash("Please select a file to upload", "warning")
+        return redirect(url_for('users.show', username=current_user.username))
 
-#     file    = request.files["user_file"]
+    file    = request.files["user_file"]
 
-#     if file.filename == "":
-#         return "Please select a file"
+    if file.filename == "":
+        flash("Please select a file to upload", "warning")
+        return redirect(url_for('users.show', username=current_user.username))
 
-#     if file and allowed_file(file.filename):
-#         user = User.update(photo=file.filename).where(User.id==id)
-#         user.execute()
-#         output   	  = upload_file_to_s3(file)
-#         return str(output)
+    if file and allowed_file(file.filename):
+        user = User.update(photo=file.filename).where(User.id==id)
+        user.execute()
+        output   	  = upload_file_to_s3(file)
+        flash(str(output), 'info')
+        return redirect(url_for('users.show', username=current_user.username))
 
-#     else:
-#         return redirect(url_for('users.edit', id=id))
+    else:
+        flash("Sorry, we were unable to upload your photo. Please try again.", "warning")
+        return redirect(url_for('users.show', username=current_user.username))
     
 
 

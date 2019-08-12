@@ -22,17 +22,17 @@ def create():
 
     if not user:
         flash("Username does not exist",'warning')
-        return redirect(url_for('sessions.new'))
+        return redirect(url_for('home'))
 
     check_password = check_password_hash(user.password,password)
 
     if not check_password:
         flash("Incorrect password",'danger')
-        return redirect(url_for('sessions.new'))
+        return redirect(url_for('home'))
     
 
     login_user(user)
-    flash('logged in','success')
+    flash(f'Welcome back {user.username}.','success')
     return redirect(url_for('users.show', username = username))
 
 
@@ -58,4 +58,5 @@ def update(id):
 @sessions_blueprint.route('/logout')
 def logout():
     logout_user()
+    flash('Thank you for visiting. You are now logged out.', 'info')
     return redirect(url_for('home'))
