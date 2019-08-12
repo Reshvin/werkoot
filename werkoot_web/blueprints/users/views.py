@@ -106,8 +106,25 @@ def update(id):
     new_password = request.form.get('new_password')
     confirm_password = request.form.get('confirm_password')
     new_hashed_password = generate_password_hash(new_password)
+    new_bio = request.form.get('bio')
+
+    power = False
+    endurance = False
+    calisthenic = False
+    team_sport = False
+
+    if request.form.get('power'):
+        power = True
+    if request.form.get('endurance'):
+        endurance = True
+    if request.form.get('calisthenic'):
+        calisthenic = True
+    if request.form.get('team_sport'):
+        team_sport = True
 
     user = User.get_by_id(id)
+
+    
 
     if user.username != old_username:
         flash('Username is not the same')
@@ -125,6 +142,11 @@ def update(id):
     user.username = new_username
     user.email = new_email
     user.password = new_hashed_password
+    user.bio = new_bio
+    user.power = power
+    user.endurance = endurance
+    user.calisthenics = calisthenic
+    user.teamsports = team_sport
     user.save()
 
     flash('Profile successfully updated')
