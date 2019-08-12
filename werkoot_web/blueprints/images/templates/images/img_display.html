@@ -1,19 +1,23 @@
 {%extends "_layout.html"%}
 {%block content%}
 
-
-<img style = "width:400px;height:400px" src = "{{image.image_url}}" />
+<div class="d-flex justify-content-center m-3">
+    <img style = "width:400px;height:400px" src = "{{image.image_url}}" />
+</div>
 {%for comment in image.comments%}
 {{comment.comment}}
 {%endfor%}
-<form action="{{ url_for('comments.create') }}" method="POST" >
-    <div>
-       <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-    </div>
-        <label for="comment">LEAVE A COMMENT</label>
-            <input type="text" name="comment">
-            <input type="hidden" name='image' value='{{image.id}}'>
-                <button type="submit">POST</button>
-</form>
+ <div class="d-flex justify-content-center m-3">
+
+    <form action="{{ url_for('comments.create') }}" method="POST" >
+        <div>
+           <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        </div>
+            <label class="font-italic" for="comment">LEAVE A COMMENT</label>
+                <input type="text" name="comment">
+                <input type="hidden" name='image' value='{{image.id}}'>
+                    <button type="submit">POST</button>
+    </form>
+ </div>
 
 {%endblock%}
