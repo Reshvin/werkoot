@@ -38,7 +38,7 @@ def create():
         c.save()
 
         output   	  = upload_file_to_s3(file)
-        flash(str(output), 'info')
+        flash("Image uploaded successfully", 'info')
         return redirect(url_for('users.show',username = current_user.username))
 
     else:
@@ -84,12 +84,19 @@ def upload_file(id):
         user = User.update(photo=file.filename).where(User.id==id)
         user.execute()
         output   	  = upload_file_to_s3(file)
-        flash(str(output), 'info')
+        flash("Image uploaded successfully", 'success')
         return redirect(url_for('users.show', username=current_user.username))
 
     else:
         flash("Sorry, we were unable to upload your photo. Please try again.", "warning")
         return redirect(url_for('users.show', username=current_user.username))
+
+
+@images_blueprint.route('delete/<id>', methods=['POST'])
+def delete(id):
+    image = Image.get_by_id(id)
+    image.delete_instance(recursive=True)
+    return redirect(url_for('users.show', username=current_user.username))
     
 
 
