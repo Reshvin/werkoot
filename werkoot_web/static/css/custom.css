@@ -215,9 +215,10 @@ footer{
 }
 
 .userbox {
-  border: #b71c1c;
+  border: transparent;
   border-style: solid;
   width: 350px;
+  box-shadow: grey 5px 5px 5px 5px;
   }
 
 h3 {
@@ -282,12 +283,14 @@ h3 {
   width: 200px;
   height: 200px;
   overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
+  margin: 15px;
 }
 
 .delete-image{
   position: absolute;
-  top: 0;
-  right: 0;
+  
+  bottom: 10px;
   z-index: 1;
   border-radius: 0 0.2rem 0 0.2rem;
   padding: 0 0.5rem;
@@ -300,6 +303,29 @@ h3 {
   background: rgb(220,53,69)
 }
 
+
+/* User Image Hover */
+.user-image:hover {
+  cursor: pointer;
+  animation: jelly 0.5s;
+}
+
+@keyframes jelly {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
 .category-link {
   text-decoration: none;
   color: black;
@@ -310,4 +336,5 @@ h3 {
   text-decoration: none;
   color: black;
   transform: scale(1.03)
+
 }
