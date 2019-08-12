@@ -38,7 +38,7 @@
 <div class="column">
   <div>
     <h3 class="d-flex justify-content-center">Dear people</h3>
-    <p class="d-flex justify-content-center">Choose the training you needed.</p>
+    <p class="d-flex justify-content-center">Choose the training you need.</p>
   </div>
 </div>
 </div>
@@ -47,32 +47,32 @@
 <br>
 <!-- card for different training -->
 <div class="card-deck mx-auto">
-  <div class="card">
+  <a class="card category-link" href="{{url_for('users.get_by_category', category='power')}}">
     <img src="../static/power_training.jpg" class="card-img-top talesCard" alt="...">
     <div class="card-body mx-auto">
       <h5 class="card-title">Power</h5>
     </div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card category-link" href="{{url_for('users.get_by_category', category='endurance')}}">
     <img src="../static/endurance_training.jpg" class="card-img-top talesCard" alt="...">
     <div class="card-body mx-auto">
       <h5 class="card-title">Endurance</h5>
       <p class="card-text"></p>
     </div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card category-link" href="{{url_for('users.get_by_category', category='calisthenics')}}">
     <img src="../static/calistenic_training.jpg" class="card-img-top talesCard" alt="...">
     <div class="card-body mx-auto">
       <h5 class="card-title">Calisthenics</h5>
       <p class="card-text"></p>
     </div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card category-link" href="{{url_for('users.get_by_category', category='teamsports')}}">
       <img src="../static/teamsport.jpg" class="card-img-top talesCard" alt="...">
       <div class="card-body mx-auto">
         <h5 class="card-title">Team Sports</h5>
         <p class="card-text"></p>
       </div>
-    </div>
+    </a>
 </div>
 {% endblock %}

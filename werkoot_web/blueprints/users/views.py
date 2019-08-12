@@ -72,16 +72,16 @@ def index():
     return render_template('users/users.html', users = users, text = text)
 
 
-# @users_blueprint.route('/<id>/edit', methods=['GET'])
-# def edit(id):
-#     if not current_user.is_authenticated:
-#         return redirect (url_for('sessions.new'))
-#     else:
-#         user = User.get_by_id(id)
-#         if current_user == user:
-#             return render_template('users/edit.html',user=user)
-#         else:
-#             return redirect (url_for('index'))
+@users_blueprint.route('/<id>/edit', methods=['GET'])
+def edit(id):
+    if not current_user.is_authenticated:
+        return redirect (url_for('sessions.new'))
+    else:
+        user = User.get_by_id(id)
+        if current_user == user:
+            return render_template('users/edit.html',user=user)
+        else:
+            return redirect (url_for('index'))
 
 @users_blueprint.route('/search', methods=['POST'])
 def search():
@@ -96,6 +96,78 @@ def search():
     
     return render_template('users/users.html', users = users, text = text)
 
+@users_blueprint.route('search/<category>', methods=['GET'])
+def get_by_category(category):
+    
+    if category == 'power':
+        users = User.select().where(User.power == True)
+        text = "Power"
+    elif category == "endurance":
+        users = User.select().where(User.endurance == True)
+        text = "Endurance"
+    elif category == "calisthenics":
+        users = User.select().where(User.calisthenics == True)
+        text = "Calisthenics"
+    elif category == "teamsports":
+        users = User.select().where(User.teamsports == True)
+        text = "Team Sports"
+
+    return render_template('users/users.html', users = users, text = text)
+
 @users_blueprint.route('/<id>', methods=['POST'])
 def update(id):
-    pass
+    old_email = request.form.get('old_email')
+    old_username = request.form.get('old_username')
+    old_password = request.form.get('old_password')
+    new_email = request.form.get('new_email')
+    new_username = request.form.get('new_username')
+    new_password = request.form.get('new_password')
+    confirm_password = request.form.get('confirm_password')
+    new_hashed_password = generate_password_hash(new_password)
+    new_bio = request.form.get('bio')
+
+    power = False
+    endurance = False
+    calisthenic = False
+    team_sport = False
+
+    if request.form.get('power'):
+        power = True
+    if request.form.get('endurance'):
+        endurance = True
+    if request.form.get('calisthenic'):
+        calisthenic = True
+    if request.form.get('team_sport'):
+        team_sport = True
+
+    user = User.get_by_id(id)
+
+    
+
+    if user.username != old_username:
+        flash('Username is not the same')
+        return redirect(url_for('users.new'))
+    elif user.email != old_email:
+        flash('Email is not the same')
+        return redirect(url_for('users.new'))
+    elif new_password != confirm_password:
+        flash('Passwords are not the same')
+        return redirect(url_for('users.new'))
+    if not check_password_hash(user.password, old_password):
+        flash('Incorrect password')
+        return redirect(url_for('users.new'))
+
+    user.username = new_username
+    user.email = new_email
+    user.password = new_hashed_password
+    user.bio = new_bio
+    user.power = power
+    user.endurance = endurance
+    user.calisthenics = calisthenic
+    user.teamsports = team_sport
+    user.save()
+
+    flash('Profile successfully updated')
+    return redirect(url_for('users.show',username = current_user.username))
+
+
