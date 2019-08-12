@@ -96,6 +96,24 @@ def search():
     
     return render_template('users/users.html', users = users, text = text)
 
+@users_blueprint.route('search/<category>', methods=['GET'])
+def get_by_category(category):
+    
+    if category == 'power':
+        users = User.select().where(User.power == True)
+        text = "Power"
+    elif category == "endurance":
+        users = User.select().where(User.endurance == True)
+        text = "Endurance"
+    elif category == "calisthenics":
+        users = User.select().where(User.calisthenics == True)
+        text = "Calisthenics"
+    elif category == "teamsports":
+        users = User.select().where(User.teamsports == True)
+        text = "Team Sports"
+
+    return render_template('users/users.html', users = users, text = text)
+
 @users_blueprint.route('/<id>', methods=['POST'])
 def update(id):
     pass
