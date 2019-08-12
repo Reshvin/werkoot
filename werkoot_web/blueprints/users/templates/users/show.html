@@ -56,7 +56,7 @@
                 {% if current_user.id == user.id %}
                     <form action="{{ url_for('images.delete', id=image.id) }}" method="POST">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                        <button class="btn delete-image">Delete</button>
+                        <button class="btn delete-image"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 {% endif %}
                 <a href="{{ url_for('images.display_img', id=image.id) }}">
