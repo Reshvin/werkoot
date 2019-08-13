@@ -242,21 +242,33 @@ h3 {
 
 /* Profile Image */
 .profile-image{
-  border-radius: 0.25rem;
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .photo-link {
-  background: rgba(52, 58, 64, 0.75);
+  background: rgba(52, 58, 64, 1);
   color: white;
-  border-radius: 0 0.25rem;
-  padding: 0 0.5rem;
-  font-size: 0.9rem;
+  border-radius: 50%;
+  border: 2px solid white;
+  padding: 0;
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  right: 25px;
+  bottom: 30px;
 }
 
 .photo-link:hover{
   text-decoration: none;
-  color: #343a40;
-  background: rgba(255,255,255,0.75)
+  color: white;
+  background: rgba(100,100,100, 1);
+  border: 2px solid white;
+  animation: jelly 0.5s;
 }
 
 /* Image uploaders */
@@ -433,4 +445,20 @@ h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.edit-profile{
+  position: absolute;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+}
+
+.edit-profile:hover{
+  text-decoration: none;
+  color: #007bff;
+}
+
+.shadow {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.27)
 }
