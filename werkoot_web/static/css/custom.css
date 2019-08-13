@@ -236,7 +236,7 @@ h3 {
 .alert {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 100;
   margin: 0 3vw;
 }
 
