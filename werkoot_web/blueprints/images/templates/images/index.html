@@ -1,7 +1,7 @@
 {%extends "_layout.html"%}
 {%block content%}
 
-<div class="w-100 d-flex justify-content-center flex-wrap mt-3">
+<div class="w-100 d-flex justify-content-center flex-wrap my-3 pt-2">
     
     <a href="{{url_for('users.get_by_category', category='power')}}">
         <div class="badge yellow">
@@ -30,8 +30,8 @@
 </div>
 
 
-<div class='m-3 w-100'>
-    <div class="card-columns mx-auto">
+<div class='mx-auto' style="width:90%;max-width:1100px;">
+    <div class="card-columns">
     {% for image in images %}
         <div class="card" style="overflow:hidden;">
             {% for user in users %}
