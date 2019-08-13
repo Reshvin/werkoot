@@ -116,14 +116,11 @@ def get_by_category(category):
 
 @users_blueprint.route('/<id>', methods=['POST'])
 def update(id):
-    old_email = request.form.get('old_email')
-    old_username = request.form.get('old_username')
-    old_password = request.form.get('old_password')
-    new_email = request.form.get('new_email')
-    new_username = request.form.get('new_username')
+    email = request.form.get('email')
+    username = request.form.get('username')
+    password = request.form.get('password')
     new_password = request.form.get('new_password')
     confirm_password = request.form.get('confirm_password')
-    new_hashed_password = generate_password_hash(new_password)
     new_bio = request.form.get('bio')
 
     power = False
@@ -142,23 +139,21 @@ def update(id):
 
     user = User.get_by_id(id)
 
-    
+    if new_password != confirm_password:
+        flash('Passwords are not the same', 'danger')
+        return redirect(url_for('users.edit', id=current_user.id))
 
-    if user.username != old_username:
-        flash('Username is not the same')
-        return redirect(url_for('users.new'))
-    elif user.email != old_email:
-        flash('Email is not the same')
-        return redirect(url_for('users.new'))
-    elif new_password != confirm_password:
-        flash('Passwords are not the same')
-        return redirect(url_for('users.new'))
-    if not check_password_hash(user.password, old_password):
-        flash('Incorrect password')
-        return redirect(url_for('users.new'))
+    if not check_password_hash(user.password, password):
+        flash('Incorrect password', 'danger')
+        return redirect(url_for('users.edit', id=current_user.id))
 
-    user.username = new_username
-    user.email = new_email
+    if len(new_password) > 0:
+        new_hashed_password = generate_password_hash(new_password)
+    else:
+        new_hashed_password = generate_password_hash(password)
+
+    user.username = username
+    user.email = email
     user.password = new_hashed_password
     user.bio = new_bio
     user.power = power
@@ -167,7 +162,7 @@ def update(id):
     user.teamsports = team_sport
     user.save()
 
-    flash('Profile successfully updated')
+    flash('Profile successfully updated', 'success')
     return redirect(url_for('users.show',username = current_user.username))
 
 
