@@ -1,3 +1,5 @@
+let cmSize = []
+
 function fileOne(input){
     if (input.files && input.files[0]){
         let reader = new FileReader();
@@ -77,9 +79,6 @@ function check_pass(){
   }
   
 
-
-
-
 function changeUnits(){
     if ($('#changeUnit').text() === "Convert to inches"){
         measCM = parseFloat($('#measurement').text())
@@ -97,3 +96,21 @@ function changeUnits(){
 
 $(document).on('click', '#changeUnit', changeUnits)
 
+
+function sizeUnits() {
+    for(let i = 0; i < $('.sizeNum').length; i++){
+        if ($('.sizeUnit')[i].innerText === "cm"){
+            meas = parseFloat($('.sizeNum')[i].innerText)
+            cmSize.push(meas)
+            let inSize = cmSize[i] * 0.39
+            inSize = inSize.toFixed(1)
+            $('.sizeNum')[i].innerText = inSize
+            $('.sizeUnit')[i].innerText = 'in'
+        } else {
+            $('.sizeNum')[i].innerText = cmSize[i]
+            $('.sizeUnit')[i].innerText = 'cm'
+        }
+    }
+}
+
+$(document).on('click', '.sizeBtn', sizeUnits)
