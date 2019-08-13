@@ -9,6 +9,10 @@ from werkoot_web.blueprints.comments.views import comments_blueprint
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
 from flask_wtf.csrf import CSRFProtect
+from flask_login import current_user
+from models.user import User
+from models.image import Image
+from models.fan_idol import FanIdol
 
 csrf = CSRFProtect()
 csrf.init_app(app)
@@ -29,5 +33,14 @@ def internal_server_error(e):
 
 
 @app.route("/")
-def home(): 
-    return render_template('home.html')
+def home():
+    if current_user.is_authenticated:
+        
+        followers = User.select().join(FanIdol, on=(FanIdol.idol_id == User.id)).where((FanIdol.fan_id == current_user.id))
+
+        images = Image.select().where((Image.user.in_(followers)) | (Image.user_id == current_user.id)).order_by(Image.created_at.desc())
+    
+        users = User.select()
+        return render_template('images/index.html', images=images, users=users)
+    else:
+        return render_template('home.html')
