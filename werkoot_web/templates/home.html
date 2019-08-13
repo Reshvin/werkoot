@@ -7,7 +7,7 @@
 
 
 <div class="container p-3">
-  <div class="row mb-3">
+  <div class="row pt-5">
     <div class=" d-flex align-items-start flex-column mx-auto ">
       <h3><i class="fas fa-heartbeat"></i>  Find Your Fitness Interest</h3>
     </div>
@@ -16,12 +16,56 @@
         <h3><i class="fas fa-tape"></i> Built-in MuscleMeasure&trade; Tool</h3>
     </div>
   </div>
+
+
+  <div class="row w-100 mt-5">
+    <a class="col-12 col-sm-6 col-lg-3 category-link my-3" href="{{url_for('users.get_by_category', category='power')}}">
+      <div class="card">
+        <div style="background:url('https://werkoot.s3.us-east-2.amazonaws.com/power_training.jpg');background-size:cover;background-position:top;background-repeat:no-repeat;" class="card-img-top talesCard"></div>
+        <div class="card-body mx-auto">
+          <h5 class="card-title">Power</h5>
+        </div>
+      </div>
+    </a>
+
+    <a class="col-12 col-sm-6 col-lg-3 category-link my-3" href="{{url_for('users.get_by_category', category='endurance')}}">
+      <div class="card">
+        <div style="background:url('https://werkoot.s3.us-east-2.amazonaws.com/endurance_training.jpg');background-size:cover;background-position:top;background-repeat:no-repeat;" class="card-img-top talesCard"></div>
+        <div class="card-body mx-auto">
+          <h5 class="card-title">Endurance</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </a>
+
+    <a class="col-12 col-sm-6 col-lg-3 category-link my-3" href="{{url_for('users.get_by_category', category='calisthenics')}}">
+      <div class="card">
+        <div style="background:url('https://werkoot.s3.us-east-2.amazonaws.com/calistenic_training.jpg');background-size:cover;background-position:top;background-repeat:no-repeat;" class="card-img-top talesCard"></div>
+        <div class="card-body mx-auto">
+          <h5 class="card-title">Calisthenics</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </a>
+
+    <a class="col-12 col-sm-6 col-lg-3 category-link my-3" href="{{url_for('users.get_by_category', category='teamsports')}}">
+      <div class="card">
+        <div style="background:url('https://werkoot.s3.us-east-2.amazonaws.com/teamsport.jpg');background-size:cover;background-position:top;background-repeat:no-repeat;" class="card-img-top talesCard"></div>
+        <div class="card-body mx-auto">
+          <h5 class="card-title">Team Sports</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
 </div>
 
 
 
 <!-- card for different training -->
-<div class='container'>
+<!-- <div class='container'>
 <div class="card-deck mx-auto">
   <div class="row">
 
@@ -55,7 +99,7 @@
       </a>
   </div>
 </div>
-</div>
+</div> -->
 {% endblock %}
 
 
