@@ -70,11 +70,11 @@ def display_img(id):
 @images_blueprint.route('/<id>/images', methods=['POST'])
 def upload_file(id):
 
-    if "user_file" not in request.files:
+    if "profile_image" not in request.files:
         flash("Please select a file to upload", "warning")
         return redirect(url_for('users.show', username=current_user.username))
 
-    file    = request.files["user_file"]
+    file    = request.files["profile_image"]
 
     if file.filename == "":
         flash("Please select a file to upload", "warning")
