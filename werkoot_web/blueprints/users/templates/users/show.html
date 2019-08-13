@@ -34,7 +34,7 @@
             {%if user.calisthenics%}
             <div class="badge pink">
                 <div class="circle"> </div>
-                <div class="ribbon">Calistanic</div>
+                <div class="ribbon">Calisthenics</div>
             </div>
             {%endif%}
             {%if user.teamsports%}
@@ -50,14 +50,35 @@
             </div>
             <hr>
             <div>
-                Bicep Measurement
-        
+                <strong>Bicep Measurements</strong>
+                {% if user.measurements %}
+                {% for measurement in user.measurements %}
+                    <div class='bicep-measurements'>
+                        <div class='date'>
+                            <p><em>
+                                {{ measurement.created_at.strftime('%d %b %Y') }}
+                            </em>-</p>
+                        </div>
+                        {% set cm = measurement.bicep/10%}
+                        <div class='size'>
+                            <p>{{cm | round(1, 'floor')}} cm</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% else %}
+                <p>No measurements</p>
+                {% endif %}
             </div>
         </div>         
      </div>
     <div class="wrappertwo">
-
-            <div class="content_image m-3 ">
+        <div class="content_image m-3 ">
+            {% if current_user.id == user.id %}
+            <button type="button" class="user-image d-flex justify-content-center align-items-center p-0" data-toggle="modal" data-target="#newUserImage"
+            style="background:#effff5;outline:none;border-color:#c4d4ca;">
+                <img class='w-50' src="https://static.thenounproject.com/png/558475-200.png">
+            </button>
+            {% endif %}
     
             {%for image in user.images%}
             <div class='user-image'>
@@ -68,10 +89,8 @@
                         <button class="btn delete-image"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 {% endif %}
-                <a href="{{ url_for('images.display_img', id=image.id) }}">
-                    <img class="w-100" src = "{{image.image_url}}" />
+                <a class="user-image-link" href="{{ url_for('images.display_img', id=image.id) }}" style="background-image:url('{{image.image_url}}')">
                 </a>
-            
             </div>
             {%endfor%}
             </div>
@@ -111,7 +130,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newProfilePictureTitle">Upload profile photo</h5>
+                <h5 class="modal-title" id="newProfilePictureTitle">Upload Profile Picture</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -119,8 +138,8 @@
             <div class="modal-body">
                     <form class="text-center" action="{{ url_for('images.upload_file', id=user.id)}}" method="POST" enctype="multipart/form-data">
                         
-                        <input type="file" name="user_file" id="user_file" class="inputfile mb-0" onchange="viewProfileImage(this)"/>
-                        <label class="mb-0" for="user_file">Choose a file</label>
+                        <input type="file" name="profile_image" id="profile_image" class="inputfile mb-0" onchange="viewProfileImage(this)"/>
+                        <label class="mb-0" for="profile_image">Choose a file</label>
                 
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <button class="btn btn-outline-secondary" type="submit">Upload</button>
@@ -134,5 +153,37 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="newUserImage" tabindex="-1" role="dialog" aria-labelledby="newUserImageTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newUserImageTitle">Upload New Picture</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <form class="text-center" action="{{url_for('images.create')}}" method="POST" enctype="multipart/form-data">
+
+                            <div id="new_image_viewer" class="mb-3">
+                                <img id="new_image_placeholder" class='profile-image upload-view' src="https://www.fwhealth.org/wp-content/uploads/2017/03/placeholder-500x500.jpg">
+                            </div>
+
+                            <div class="form-group mx-5">
+                                <input class="form-control" type="text" name="comment" placeholder="Type your comment here">
+                            </div>
+                            
+                            <input type="file" name="user_file" id="user_file" class="inputfile mb-0" onchange="viewNewImage(this)"/>
+                            <label class="mb-0" for="user_file">Choose a file</label>
+                    
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <button class="btn btn-outline-secondary" type="submit">Upload</button>
+                        </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 {%endblock%}
