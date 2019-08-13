@@ -18,7 +18,7 @@ def new():
 
 @comments_blueprint.route('/', methods=['POST'])
 def create():
-
+    
     comment = request.form.get('comment')
     image = request.form.get('image')
 

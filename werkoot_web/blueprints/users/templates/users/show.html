@@ -9,14 +9,46 @@
        <div class="d-flex justify-content-center m-3">
              <div style="position:relative">
     {% if user.username == current_user.username %}
-        <button type="button" class="photo-link btn btn-link" data-toggle="modal" data-target="#newProfilePicture" style="position:absolute;bottom:0;">New profile picture</button>
+        <a href="{{url_for('users.edit', id=current_user.id)}}" class='edit-profile'><i class="far fa-edit"></i></a>
+        <button type="button" class="photo-link btn btn-link" data-toggle="modal" data-target="#newProfilePicture">+</button>
     {% endif %}
-          <img  class="profile-image" style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
+          <div class="profile-image shadow" style="background-image:url('{{user.profile_image_url}}')">
+          </div>
         </div>
        </div>
 
-       <h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
-
+       
+    <div class="container">
+       <div class="d-flex justify-content-around">
+            <h3><em>{{user.username}}</em></h3>    
+        {%if current_user.is_authenticated%}
+        {%if current_user.id != user.id%}
+        {%if current_user.is_follow(user.id)%}
+        
+                <form action="{{url_for('fan_idol.unfollow', id = user.id)}}" method = 'POST'>
+                    <div>
+                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                    </div>
+            
+                    <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
+                </form>
+        
+        {%else%}
+        
+                <form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
+                    <div>
+                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                    </div>
+        
+                    <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
+                </form>
+        
+        {%endif%}
+        {%endif%}
+        {%endif%}
+       </div>
+    </div>
+        
         <hr>
         <div class="main-wrapper">
             {%if user.power%}
@@ -52,7 +84,7 @@
             </a>
             {%endif%}
             <hr>
-            <p>Bio</p>
+            <p>About Me</p>
             <div class="bio_body m-3">
                 {{ user.bio }}
             </div>
@@ -107,31 +139,6 @@
 
         </div>
         
-        {%if current_user.is_authenticated%}
-        {%if current_user.id != user.id%}
-        {%if current_user.is_follow(user.id)%}
-        
-        <form action="{{url_for('fan_idol.unfollow', id = user.id)}}" method = 'POST'>
-            <div>
-                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-            </div>
-            
-            <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
-        </form>
-        
-        {%else%}
-        
-        <form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
-            <div>
-                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-            </div>
-        
-                <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
-        </form>
-        
-        {%endif%}
-        {%endif%}
-        {%endif%}
     </div>
     </div>
 
@@ -177,7 +184,7 @@
                         <form class="text-center" action="{{url_for('images.create')}}" method="POST" enctype="multipart/form-data">
 
                             <div id="new_image_viewer" class="mb-3">
-                                <img id="new_image_placeholder" class='profile-image upload-view' src="https://www.fwhealth.org/wp-content/uploads/2017/03/placeholder-500x500.jpg">
+                                <img id="new_image_placeholder" class='upload-view' src="https://www.fwhealth.org/wp-content/uploads/2017/03/placeholder-500x500.jpg">
                             </div>
 
                             <div class="form-group mx-5">
