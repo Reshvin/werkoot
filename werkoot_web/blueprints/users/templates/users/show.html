@@ -20,28 +20,36 @@
         <hr>
         <div class="main-wrapper">
             {%if user.power%}
-            <div class="badge yellow">
-                <div class="circle"></div>
-                <div class="ribbon">Power</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='power')}}">
+                <div class="badge yellow">
+                    <div class="circle"></div>
+                    <div class="ribbon">Power</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.endurance%}
-            <div class="badge orange">
-                <div class="circle"> </i></div>
-                <div class="ribbon">Endurance</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='endurance')}}">
+                <div class="badge orange">
+                    <div class="circle"> </i></div>
+                    <div class="ribbon">Endurance</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.calisthenics%}
-            <div class="badge pink">
-                <div class="circle"> </div>
-                <div class="ribbon">Calisthenics</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='calisthenics')}}">
+                <div class="badge pink">
+                    <div class="circle"> </div>
+                    <div class="ribbon">Calisthenics</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.teamsports%}
-            <div class="badge red">
-                <div class="circle"></div>
-                <div class="ribbon">Team Sport</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='teamsports')}}">
+                <div class="badge red">
+                    <div class="circle"></div>
+                    <div class="ribbon">Team Sport</div>
+                </div>
+            </a>
             {%endif%}
             <hr>
             <p>Bio</p>
