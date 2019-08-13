@@ -8,36 +8,40 @@
 
 <!-- card for different training -->
 <div class="card-deck m-5">
-  <a class="card category-link" href="{{url_for('users.get_by_category', category='power')}}">
-    <img src="https://werkoot.s3.us-east-2.amazonaws.com/power_training.jpg" class="card-img-top talesCard" alt="...">
-    <div class="card-body mx-auto">
-      <h5 class="card-title">Power</h5>
-    </div>
-  </a>
-  <a class="card category-link" href="{{url_for('users.get_by_category', category='endurance')}}">
-    <img src="https://werkoot.s3.us-east-2.amazonaws.com/endurance_training.jpg" class="card-img-top talesCard" alt="...">
-    <div class="card-body mx-auto">
-      <h5 class="card-title">Endurance</h5>
-      <p class="card-text"></p>
-    </div>
-  </a>
-  <a class="card category-link" href="{{url_for('users.get_by_category', category='calisthenics')}}">
-    <img src="https://werkoot.s3.us-east-2.amazonaws.com/calistenic_training.jpg" class="card-img-top talesCard" alt="...">
-    <div class="card-body mx-auto">
-      <h5 class="card-title">Calisthenics</h5>
-      <p class="card-text"></p>
-    </div>
-  </a>
-  <a class="card category-link" href="{{url_for('users.get_by_category', category='teamsports')}}">
-      <img src="https://werkoot.s3.us-east-2.amazonaws.com/teamsport.jpg" class="card-img-top talesCard" alt="...">
+  <div class="row">
+
+    <a class="card category-link" href="{{url_for('users.get_by_category', category='power')}}">
+      <img src="https://werkoot.s3.us-east-2.amazonaws.com/power_training.jpg" class="card-img-top talesCard" alt="...">
       <div class="card-body mx-auto">
-        <h5 class="card-title">Team Sports</h5>
+        <h5 class="card-title">Power</h5>
+      </div>
+    </a>
+    <a class="card category-link" href="{{url_for('users.get_by_category', category='endurance')}}">
+      <img src="https://werkoot.s3.us-east-2.amazonaws.com/endurance_training.jpg" class="card-img-top talesCard" alt="...">
+      <div class="card-body mx-auto">
+        <h5 class="card-title">Endurance</h5>
         <p class="card-text"></p>
       </div>
     </a>
-</div>
+    <a class="card category-link" href="{{url_for('users.get_by_category', category='calisthenics')}}">
+      <img src="https://werkoot.s3.us-east-2.amazonaws.com/calistenic_training.jpg" class="card-img-top talesCard" alt="...">
+      <div class="card-body mx-auto">
+        <h5 class="card-title">Calisthenics</h5>
+        <p class="card-text"></p>
+      </div>
+    </a>
+
+    <a class="card category-link" href="{{url_for('users.get_by_category', category='teamsports')}}">
+        <img src="https://werkoot.s3.us-east-2.amazonaws.com/teamsport.jpg" class="card-img-top talesCard" alt="...">
+        <div class="card-body mx-auto">
+          <h5 class="card-title">Team Sports</h5>
+          <p class="card-text"></p>
+        </div>
+      </a>
+  </div>
+  </div>
 {% endblock %}
 
-{% if current_user.is_authenticated %}
-logged in
-{% endif %}
+
+
+

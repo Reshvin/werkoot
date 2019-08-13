@@ -4,12 +4,23 @@
 <div class="d-flex justify-content-center m-3">
     <img style = "width:400px;height:400px" src = "{{image.image_url}}" />
 </div>
+
 {%for comment in image.comments%}
-<div class="container">
-    {{comment.comment}}
-</div>
-    
-    
+    <!-- <div class="d-flex justify-content-center"> -->
+        <div class="container" style="width: 300px;">
+                <div class="dialogbox">
+                    <div class="body">
+                      <span class=""></span>
+                          <div class="message">
+                            <span>{{comment.comment}}</span>
+                          </div>
+                    </div>
+                </div>
+        </div>    
+        
+        
+    <!-- </div> -->
+
 
 {%endfor%}
  <div class="d-flex justify-content-center m-3">

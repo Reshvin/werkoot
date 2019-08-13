@@ -12,39 +12,78 @@
         <button type="button" class="photo-link btn btn-link" data-toggle="modal" data-target="#newProfilePicture" style="position:absolute;bottom:0;">New profile picture</button>
     {% endif %}
           <img  class="profile-image" style = "width:300px;height:300px" src = "{{user.profile_image_url}}">
+          
         </div>
        </div>
 
-       <h3 class="d-flex justify-content-center"><em>{{user.username}}</em></h3>
-
+       
+    <div class="container">
+       <div class="d-flex justify-content-around">
+            <h3><em>{{user.username}}</em></h3>    
+        {%if current_user.is_authenticated%}
+        {%if current_user.id != user.id%}
+        {%if current_user.is_follow(user.id)%}
+        
+                <form action="{{url_for('fan_idol.unfollow', id = user.id)}}" method = 'POST'>
+                    <div>
+                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                    </div>
+            
+                    <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
+                </form>
+        
+        {%else%}
+        
+                <form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
+                    <div>
+                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                    </div>
+        
+                    <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
+                </form>
+        
+        {%endif%}
+        {%endif%}
+        {%endif%}
+       </div>
+    </div>
+        
         <hr>
         <div class="main-wrapper">
             {%if user.power%}
-            <div class="badge yellow">
-                <div class="circle"></div>
-                <div class="ribbon">Power</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='power')}}">
+                <div class="badge yellow">
+                    <div class="circle"></div>
+                    <div class="ribbon">Power</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.endurance%}
-            <div class="badge orange">
-                <div class="circle"> </i></div>
-                <div class="ribbon">Endurance</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='endurance')}}">
+                <div class="badge orange">
+                    <div class="circle"> </i></div>
+                    <div class="ribbon">Endurance</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.calisthenics%}
-            <div class="badge pink">
-                <div class="circle"> </div>
-                <div class="ribbon">Calisthenics</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='calisthenics')}}">
+                <div class="badge pink">
+                    <div class="circle"> </div>
+                    <div class="ribbon">Calisthenics</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.teamsports%}
-            <div class="badge red">
-                <div class="circle"></div>
-                <div class="ribbon">Team Sport</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='teamsports')}}">
+                <div class="badge red">
+                    <div class="circle"></div>
+                    <div class="ribbon">Team Sport</div>
+                </div>
+            </a>
             {%endif%}
             <hr>
-            <p>Bio</p>
+            <p>About Me</p>
             <div class="bio_body m-3">
                 {{ user.bio }}
             </div>
@@ -99,31 +138,6 @@
 
         </div>
         
-        {%if current_user.is_authenticated%}
-        {%if current_user.id != user.id%}
-        {%if current_user.is_follow(user.id)%}
-        
-        <form action="{{url_for('fan_idol.unfollow', id = user.id)}}" method = 'POST'>
-            <div>
-                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-            </div>
-            
-            <input type="submit" class ='btn btn-outline-danger' name = 'Unfollow' value = 'Unfollow'>  
-        </form>
-        
-        {%else%}
-        
-        <form action="{{url_for('fan_idol.follow', id = user.id)}}" method = 'POST'>
-            <div>
-                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-            </div>
-        
-                <input type="submit" class ='btn btn-outline-success' name = 'follow' value = 'Follow'>  
-        </form>
-        
-        {%endif%}
-        {%endif%}
-        {%endif%}
     </div>
     </div>
 
