@@ -52,6 +52,7 @@
             <div>
                 <strong>Bicep Measurements</strong>
                 {% if user.measurements %}
+                <p class="m-0"><button class="btn btn-link p-0 sizeBtn">in | cm</button></p>
                 {% for measurement in user.measurements %}
                     <div class='bicep-measurements'>
                         <div class='date'>
@@ -61,7 +62,7 @@
                         </div>
                         {% set cm = measurement.bicep/10%}
                         <div class='size'>
-                            <p>{{cm | round(1, 'floor')}} cm</p>
+                            <p><span class="sizeNum">{{cm | round(1, 'floor')}}</span> <span class="sizeUnit">cm</span></p>
                         </div>
                     </div>
                 {% endfor %}
