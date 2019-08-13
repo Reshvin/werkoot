@@ -37,8 +37,8 @@
             {% for user in users %}
                 {% if user.id == image.user_id %}
                 <a class="head-link" href="{{ url_for('users.show', username = user.username ) }}">
-                <div class="card-header p-0 w-100 d-flex align-items-center">
-                    <div class='head-img' style="background-image:url('{{user.profile_image_url}}')"></div>
+                <div class="card-header p-2 w-100 d-flex align-items-center">
+                    <div class='head-img mr-2' style="background-image:url('{{user.profile_image_url}}')"></div>
                     <p>{{user.username}}</p>
                 </div>
                 </a>
