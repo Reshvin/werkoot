@@ -37,3 +37,7 @@
     </a>
 </div>
 {% endblock %}
+
+{% if current_user.is_authenticated %}
+logged in
+{% endif %}
