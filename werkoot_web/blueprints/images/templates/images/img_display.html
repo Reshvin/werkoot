@@ -31,9 +31,9 @@
         </div>
             <label class="font-italic" for="comment">LEAVE A COMMENT</label>
             <br>
-                <input type="text" name="comment">
+                <input id = 'commentInput' onkeydown="disableSubmit()" type="text" name="comment">
                 <input type="hidden" name='image' value='{{image.id}}'>
-                    <button type="submit">POST</button>
+                    <button id='submitComment' type="submit" disabled>POST</button>
     </form>
  </div>
 

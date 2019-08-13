@@ -114,3 +114,11 @@ function sizeUnits() {
 }
 
 $(document).on('click', '.sizeBtn', sizeUnits)
+
+function disableSubmit(){
+    if($('#commentInput').val().length > 1){
+        $('#submitComment').attr('disabled',false)
+    } else {
+        $('#submitComment').attr('disabled',true)
+    }
+}
