@@ -1,0 +1,54 @@
+{%extends "_layout.html"%}
+{%block content%}
+
+<div class="w-100 d-flex justify-content-center flex-wrap">
+    
+    <a href="{{url_for('users.get_by_category', category='power')}}">
+        <div class="badge yellow">
+            <div class="circle"></div>
+            <div class="ribbon">Power</div>
+        </div>
+    </a>
+    <a href="{{url_for('users.get_by_category', category='endurance')}}">
+        <div class="badge orange">
+            <div class="circle"> </i></div>
+            <div class="ribbon">Endurance</div>
+        </div>
+    </a>
+    <a href="{{url_for('users.get_by_category', category='calisthenics')}}">
+        <div class="badge pink">
+            <div class="circle"> </div>
+            <div class="ribbon">Calisthenics</div>
+        </div>
+    </a>
+    <a href="{{url_for('users.get_by_category', category='teamsports')}}">
+        <div class="badge red">
+            <div class="circle"></div>
+            <div class="ribbon">Team Sport</div>
+        </div>
+    </a>
+</div>
+
+
+<div class='container-fluid mt-3'>
+    <div class="card-columns mx-auto">
+    {% for image in images %}
+        <div class="card" style="overflow:hidden;">
+            {% for user in users %}
+                {% if user.id == image.user_id %}
+                <a class="head-link" href="{{ url_for('users.show', username = user.username ) }}">
+                <div class="card-header p-0">
+                    <img style="height:40px;background-color:white;" src="{{user.profile_image_url}}"/>
+                    {{user.username}}
+                </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+            <a href="{{ url_for('images.display_img', id=image.id)}}">
+            <img src="{{image.image_url}}" class="card-img-bottom"></a>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+{%endblock%}

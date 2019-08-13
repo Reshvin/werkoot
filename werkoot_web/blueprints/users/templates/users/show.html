@@ -20,28 +20,36 @@
         <hr>
         <div class="main-wrapper">
             {%if user.power%}
-            <div class="badge yellow">
-                <div class="circle"></div>
-                <div class="ribbon">Power</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='power')}}">
+                <div class="badge yellow">
+                    <div class="circle"></div>
+                    <div class="ribbon">Power</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.endurance%}
-            <div class="badge orange">
-                <div class="circle"> </i></div>
-                <div class="ribbon">Endurance</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='endurance')}}">
+                <div class="badge orange">
+                    <div class="circle"> </i></div>
+                    <div class="ribbon">Endurance</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.calisthenics%}
-            <div class="badge pink">
-                <div class="circle"> </div>
-                <div class="ribbon">Calisthenics</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='calisthenics')}}">
+                <div class="badge pink">
+                    <div class="circle"> </div>
+                    <div class="ribbon">Calisthenics</div>
+                </div>
+            </a>
             {%endif%}
             {%if user.teamsports%}
-            <div class="badge red">
-                <div class="circle"></div>
-                <div class="ribbon">Team Sport</div>
-            </div>
+            <a href="{{url_for('users.get_by_category', category='teamsports')}}">
+                <div class="badge red">
+                    <div class="circle"></div>
+                    <div class="ribbon">Team Sport</div>
+                </div>
+            </a>
             {%endif%}
             <hr>
             <p>Bio</p>
@@ -50,8 +58,10 @@
             </div>
             <hr>
             <div>
-                <strong>Bicep Measurements</strong>
+                <strong>Measurements</strong>
                 {% if user.measurements %}
+                <p class="m-0"><button class="btn btn-link p-0 sizeBtn">in | cm</button></p>
+                <strong>Bicep</strong>
                 {% for measurement in user.measurements %}
                     <div class='bicep-measurements'>
                         <div class='date'>
@@ -61,7 +71,7 @@
                         </div>
                         {% set cm = measurement.bicep/10%}
                         <div class='size'>
-                            <p>{{cm | round(1, 'floor')}} cm</p>
+                            <p><span class="sizeNum">{{cm | round(1, 'floor')}}</span> <span class="sizeUnit">cm</span></p>
                         </div>
                     </div>
                 {% endfor %}
