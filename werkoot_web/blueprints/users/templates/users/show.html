@@ -1,7 +1,7 @@
 {%extends "_layout.html"%}
 {%block content%}
     <div class="">
-    <div class="d-inline-flex ">
+    <div class="d-inline-flex w-100">
 
 
         <div class="userbox m-3 ">
@@ -114,7 +114,7 @@
         </div>         
      </div>
     <div class="wrappertwo">
-        <div class="content_image m-3 ">
+        <div class="content_image my-3">
             {% if current_user.id == user.id %}
             <button type="button" class="user-image d-flex justify-content-center align-items-center p-0" data-toggle="modal" data-target="#newUserImage"
             style="background:#effff5;outline:none;border-color:#c4d4ca;">

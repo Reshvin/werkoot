@@ -305,7 +305,12 @@ h3 {
 
 
 /* Profile Image Display */
+.wrappertwo{
+  width: 100%;
+}
 .content_image{
+  width:230px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
 }
@@ -498,3 +503,26 @@ h3 {
         column-count: 4;
       }
 }
+
+
+@media (min-width: 830px){
+  .content_image{
+    width:460px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1060px){
+  .content_image{
+    width:690px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1290px){
+  .content_image{
+    width:920px;
+    margin: 0 auto;
+  }
+}
+
