@@ -3,6 +3,7 @@
 } */
 
 #page-container{
+  width: 100vw;
   position: relative;
   min-height: 100vh;
 }
@@ -18,8 +19,8 @@ footer{
 }
 
 .talesCard {
-    height: 250px;
-
+    height: 150px;
+    width: 100%;
 }
 
 .dropdown:hover>.dropdown-menu {
