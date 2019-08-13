@@ -409,3 +409,27 @@ h3 {
   text-align: left;
   flex: 1 1 0;
 }
+
+.head-link{
+  text-align: left;
+  text-decoration: none;
+  color: black;
+}
+
+.head-link:hover {
+  text-decoration: none;
+  color: #343a40;
+  font-size: 1.1rem;
+}
+
+.head-link p{
+  margin: 0;
+}
+
+.head-img {
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

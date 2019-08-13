@@ -30,16 +30,16 @@
 </div>
 
 
-<div class='container-fluid mt-3'>
+<div class='m-3 w-100'>
     <div class="card-columns mx-auto">
     {% for image in images %}
         <div class="card" style="overflow:hidden;">
             {% for user in users %}
                 {% if user.id == image.user_id %}
                 <a class="head-link" href="{{ url_for('users.show', username = user.username ) }}">
-                <div class="card-header p-0">
-                    <img style="height:40px;background-color:white;" src="{{user.profile_image_url}}"/>
-                    {{user.username}}
+                <div class="card-header p-0 w-100 d-flex align-items-center">
+                    <div class='head-img' style="background-image:url('{{user.profile_image_url}}')"></div>
+                    <p>{{user.username}}</p>
                 </div>
                 </a>
                 {% endif %}
