@@ -63,7 +63,8 @@ def update(id):
 @images_blueprint.route('/display/<id>')
 def display_img(id):
     image = Image.get_by_id(id)
-    return render_template('images/img_display.html', image = image)
+    users = User.select()
+    return render_template('images/img_display.html', image = image,users = users)
 
 
         
