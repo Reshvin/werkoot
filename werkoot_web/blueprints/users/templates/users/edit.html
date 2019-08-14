@@ -1,6 +1,6 @@
 {%extends "_layout.html"%}
 {%block content%}
-<h3 class= 'text-center mt-3'>EDIT PROFILE</h3>
+<h3 class= 'text-center mt-3'>EDIT MY PROFILE</h3>
 
     {% for error in errors%}
     <li>{{error}}</li>
@@ -62,8 +62,10 @@
                 </label>
         </div>
     </div> 
-    
-    <button class="btn btn-outline-secondary d-block mx-auto mb-3" type='submit'>SUBMIT</button>   
+    <div class="row d-flex justify-content-center">
+        <button class="btn btn-outline-secondary d-block mb-3 mr-5" type='submit'>Submit</button>
+        <a class="btn btn-outline-danger mb-3" href="{{url_for('users.show',username = current_user.username)}}">Cancel</a>  
+    </div> 
 </form>
 
 </div>
