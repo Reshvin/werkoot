@@ -4,10 +4,27 @@ h3 {
   font-family: 'Black Ops One', cursive;
 }
 
+h4 {
+  font-family: 'Black Ops One', cursive;
+}
+h5 {
+  font-family: 'Black Ops One', cursive;
+}
+label {
+  font-family: 'Black Ops One', cursive;
+}
+
+
+/* body, html {
+  height: 100vh;
+} */
+
+
 body, html {
   width: 100%;
   height: 100%;
 }
+
 
 #page-container{
   position: relative;
