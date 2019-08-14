@@ -271,9 +271,10 @@ h3 {
 
   /* bio body */
 .bio_body {
-    border:black;
-    border-style: solid;
+    box-shadow: 0 4px 8px 0 rgba(0.2, 0.2, 0.2, 0.2);
     font-family: 'Roboto', sans-serif;
+    padding: 2em;
+   
   }
 
 
