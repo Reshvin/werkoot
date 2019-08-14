@@ -1,3 +1,13 @@
+
+/* font family and size */
+h3 {
+  font-family: 'Black Ops One', cursive;
+}
+
+
+
+
+
 /* body, html {
   height: 100vh;
 } */
@@ -139,6 +149,7 @@ footer{
     cursor: default;
   }
   .badge .ribbontwo {
+
     position: absolute;
     border-radius: 4px;
     padding: 5px 5px 4px;
@@ -248,6 +259,7 @@ h3 {
 .bio_body {
     border:black;
     border-style: solid;
+    font-family: 'Roboto', sans-serif;
   }
 
 
