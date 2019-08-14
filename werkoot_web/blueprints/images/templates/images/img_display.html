@@ -5,16 +5,37 @@
     <img style = "width:400px;height:400px" src = "{{image.image_url}}" />
 </div>
 
-{%for comment in image.comments%}
-    <!-- <div class="d-flex justify-content-center"> -->
-        <div class="container" style="width: 300px;">
+<div class="d-flex justify-content-center m-3">
+    <form class='w-50' action="{{ url_for('comments.create') }}" method="POST" >
+        <div>
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <input type="hidden" name='image' value='{{image.id}}'>
+        </div>
+        <div class="input-group">
+            <input class='form-control' id='commentInput' onkeydown="disableSubmit()" type="text" name="comment" placeholder="Leave a comment">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" id='submitComment' type="submit" disabled>POST</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% for comment in image.comments|sort(attribute='created_at') %}
+        <div class="container" style="width: 50%;">
                 <div class="dialogbox">
-                    <div class="body">
-                      <span class=""></span>
-                          <div class="message">
-                            <span>{{comment.comment}}</span>
-                          </div>
+                    <div class="comment-user">
+                        {% for user in users %}
+                            {% if user.id == comment.user_id %}
+                                <p class='m-0'><strong>{{user.username}}</strong></p>
+                            {%endif%}
+                        {%endfor%}
                     </div>
+                    <div class="message">
+                    <span>{{comment.comment}}</span>
+                    </div>
+                    <d class="comment-time">
+                        {{ comment.created_at.strftime('%X %d %b %Y') }}
+                    </d>
                 </div>
         </div>    
         
@@ -23,18 +44,6 @@
 
 
 {%endfor%}
- <div class="d-flex justify-content-center m-3">
 
-    <form action="{{ url_for('comments.create') }}" method="POST" >
-        <div>
-           <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        </div>
-            <label class="font-italic" for="comment">LEAVE A COMMENT</label>
-            <br>
-                <input id = 'commentInput' onkeydown="disableSubmit()" type="text" name="comment">
-                <input type="hidden" name='image' value='{{image.id}}'>
-                    <button id='submitComment' type="submit" disabled>POST</button>
-    </form>
- </div>
 
 {%endblock%}
