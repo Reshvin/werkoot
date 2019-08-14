@@ -30,7 +30,7 @@
     </div>
 
 
-    <form class="col-lg-10 mx-auto text-center border border-outline-secondary rounded p-3 my-5" action="{{ url_for('measurements.create')}}" method="POST" enctype="multipart/form-data">
+    <form class="col-lg-10 mx-auto text-center shadow border border-outline-secondary rounded p-3 my-5" action="{{ url_for('measurements.create')}}" method="POST" enctype="multipart/form-data">
         <div>
             <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
         </div>
