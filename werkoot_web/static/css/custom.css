@@ -480,6 +480,7 @@ h3 {
 
 .edit-profile:hover{
   text-decoration: none;
+  font-size:1.5em;
   color: #007bff;
 }
 
