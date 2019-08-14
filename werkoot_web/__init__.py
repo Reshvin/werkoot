@@ -13,9 +13,11 @@ from flask_login import current_user
 from models.user import User
 from models.image import Image
 from models.fan_idol import FanIdol
+from werkoot_web.util.google_login_helpers import oauth
 
 csrf = CSRFProtect()
 csrf.init_app(app)
+oauth.init_app(app)
 
 assets = Environment(app)
 assets.register(bundles)

@@ -3,6 +3,7 @@ from werkzeug.security import check_password_hash
 from models.user import User
 from flask_login import login_user,logout_user,current_user
 from models.fan_idol import FanIdol
+from werkoot_web.util.google_login_helpers import oauth
 
 fan_idol_blueprint = Blueprint('fan_idol',
                             __name__,
