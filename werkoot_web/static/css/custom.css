@@ -3,9 +3,15 @@
 h3 {
   font-family: 'Black Ops One', cursive;
 }
-
-
-
+h4 {
+  font-family: 'Black Ops One', cursive;
+}
+h5 {
+  font-family: 'Black Ops One', cursive;
+}
+label {
+  font-family: 'Black Ops One', cursive;
+}
 
 
 /* body, html {
