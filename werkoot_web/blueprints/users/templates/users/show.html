@@ -1,10 +1,9 @@
 {%extends "_layout.html"%}
 {%block content%}
-    <div class="flex">
-    <div class="d-inline-flex w-100">
 
-
-        <div class="userbox m-3 ">
+    <div class="">
+    <div class="row d-inline-flex w-100">
+        <div class="userbox col-sm-4 w-100 ">
    
        <div class="d-flex justify-content-center m-3">
              <div style="position:relative">
@@ -84,12 +83,12 @@
             </a>
             {%endif%}
             <hr>
-            <p>About Me</p>
+            <p style="font-family: 'Black Ops One', cursive;">About Me</p>
             <div class="bio_body m-3">
                 {{ user.bio }}
             </div>
             <hr>
-            <div>
+            <div style="font-family: 'Black Ops One', cursive;">
                 <strong>Measurements</strong>
                 {% if user.measurements %}
                 <p class="m-0"><button class="btn btn-link p-0 sizeBtn">in | cm</button></p>
@@ -113,7 +112,7 @@
             </div>
         </div>         
      </div>
-    <div class="wrappertwo">
+    <div class="wrappertwo col-sm-8">
         <div class="content_image my-3">
             {% if current_user.id == user.id %}
             <button type="button" class="user-image d-flex justify-content-center align-items-center p-0" data-toggle="modal" data-target="#newUserImage"
