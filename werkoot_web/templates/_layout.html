@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://kit.fontawesome.com/279aa0039a.js"></script>
@@ -23,7 +25,7 @@
   <body>
   <div id="page-container">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark " style="font-family: 'Black Ops One', cursive;">
     <a class="navbar-brand" href="{{url_for('home')}}">Werkoot</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -58,7 +60,7 @@
 
       <form action="{{ url_for('users.search') }}" method="POST" class="form-inline my-2 my-lg-0">
         <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search all users">
+        <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search all users" style="font-family: 'Roboto', sans-serif;">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
@@ -82,7 +84,7 @@
     {% endblock %}
   </div>
   <!-- Footer -->
-<footer class="page-footer font-small bg-dark pt-4 text-light">
+<footer class="page-footer font-small bg-dark pt-4 text-light" style="font-family: 'Black Ops One', cursive;">
    <p class="text-center">Workout for life</p>
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2019 Copyright:

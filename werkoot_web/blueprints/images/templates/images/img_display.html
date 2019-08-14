@@ -7,7 +7,7 @@
 
 {%for comment in image.comments%}
     <!-- <div class="d-flex justify-content-center"> -->
-        <div class="container" style="width: 300px;">
+        <div class="container" style="width: 300px;" style="font-family: 'Roboto', sans-serif;">
                 <div class="dialogbox">
                     <div class="body">
                       <span class=""></span>
@@ -23,7 +23,7 @@
 
 
 {%endfor%}
- <div class="d-flex justify-content-center m-3">
+ <div class="d-flex justify-content-center m-3" style="font-family: 'Black Ops One', cursive;">
 
     <form action="{{ url_for('comments.create') }}" method="POST" >
         <div>
@@ -31,9 +31,9 @@
         </div>
             <label class="font-italic" for="comment">LEAVE A COMMENT</label>
             <br>
-                <input id = 'commentInput' onkeydown="disableSubmit()" type="text" name="comment">
+                <input id = 'commentInput' onkeydown="disableSubmit()" type="text" name="comment" style="font-family: 'Roboto', sans-serif;">
                 <input type="hidden" name='image' value='{{image.id}}'>
-                    <button id='submitComment' type="submit" disabled>POST</button>
+                    <button class="btn btn-danger form-container" id='submitComment' type="submit" disabled>POST</button>
     </form>
  </div>
 
